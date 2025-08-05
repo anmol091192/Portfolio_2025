@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bottom‑Up Portfolio</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      height: 100%;
+      font-family: sans-serif;
+      overflow-x: hidden;
+    }
+
+    section {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: white;
+      padding: 2rem;
+      box-sizing: border-box;
+      text-align: center;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      animation: fadeIn 1s ease-in;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: normal;
+    }
+
+    p {
+      max-width: 700px;
+      line-height: 1.6;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #contact {
+      background: linear-gradient(to top right, #0f2027, #203a43, #2c5364);
+    }
+    #blog {
+      background: linear-gradient(to top, #414345, #232526);
+    }
+    #projects {
+      background: linear-gradient(to top, #232526, #414345);
+    }
+    #experience {
+      background: linear-gradient(to top, #f2994a, #f2c94c);
+      color: black;
+    }
+    #about {
+      background: linear-gradient(to top, #7e57c2, #512da8);
+    }
+    #home {
+      background: radial-gradient(circle at center, #0d47a1, #000);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 20px;
+      font-size: 1rem;
+      color: #ccc;
+      z-index: 2;
+    }
+
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/3/3f/Starsinthesky.jpg') repeat;
+      background-size: 400px 400px;
+      animation: starScroll 60s linear infinite;
+      opacity: 0.25;
+      z-index: 0;
+    }
+
+    .rocket {
+      position: absolute;
+      bottom: 60px;
+      width: 80px;
+      z-index: 1;
+      animation: floatRocket 4s ease-in-out infinite;
+    }
+
+    @keyframes starScroll {
+      from { background-position: 0 0; }
+      to { background-position: 1000px 1000px; }
+    }
+
+    @keyframes floatRocket {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body>
+  <section id="contact">
+    <h1>Contact Me</h1>
+    <p>Get in touch via email or social media. Let's build something amazing together!</p>
+  </section>
+
+  <section id="blog">
+    <h1>Blog</h1>
+    <p>Read my thoughts on web development, tech, and design. Articles are updated monthly.</p>
+  </section>
+
+  <section id="projects">
+    <h1>Projects</h1>
+    <p>Explore my personal and professional work. Includes apps, websites, and open-source contributions.</p>
+  </section>
+
+  <section id="experience">
+    <h1>Experience</h1>
+    <p>McLaren-inspired layout. Highlights from my work history, skills, and contributions at various companies.</p>
+  </section>
+
+  <section id="about">
+    <h1>About Me</h1>
+    <p>Inspired by anime. A brief overview of who I am, my passion for technology, and interests beyond code.</p>
+  </section>
+
+  <section id="home">
+    <div class="stars"></div>
+    <img src="https://cdn.pixabay.com/photo/2014/04/03/00/40/rocket-309555_1280.png" alt="Rocket" class="rocket" />
+    <h1>Anmol Khandekar</h1>
+    <h2>Software Engineer · Explorer of the Digital Unknown</h2>
+    <p>Driven by curiosity, imagination, and the thrill of discovering new dimensions in code. [Placeholder for personal quote]</p>
+    <div class="scroll-indicator">↑ Scroll Up to Explore</div>
+  </section>
+
+  <script>
+    window.onload = () => {
+      const home = document.getElementById("home");
+      home.scrollIntoView({ behavior: "instant" });
+    };
+  </script>
+</body>
+</html>
