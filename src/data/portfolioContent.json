@@ -1,0 +1,297 @@
+{
+  "personal": {
+    "name": "Anmol Khandekar",
+    "title": "Software Development Engineer II",
+    "email": "anmol09k@gmail.com",
+    "linkedin": "https://linkedin.com/in/anmol09k",
+    "github": "https://github.com/anmol091192",
+    "profileImage": "https://avatars.githubusercontent.com/u/52653396?v=4"
+  },
+  "home": {
+    "title": "Anmol Khandekar",
+    "subtitle": "Software Development Engineer II",
+    "backgroundImage": "https://stsci-opo.org/STScI-01GFNN3PWJMY4RQXKZ585BC4QH.png",
+    "imageOverlay": {
+      "title": "Pillars of Creation",
+      "description": "Captured by the James Webb Space Telescope in infrared, these iconic dust and gas columns within the Eagle Nebula are stellar nurseries hosting newborn stars. The tallest pillar spans about 4 light‑years"
+    }
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Software Development Engineer with a passion for building scalable solutions",
+    "description": "I'm a passionate Software Development Engineer with experience in cloud technologies, distributed systems, and full-stack development. I enjoy solving complex problems and building scalable solutions that make a real impact.",
+    "skills": [
+      "JavaScript", "TypeScript", "Python", "Java", "React", "Node.js", 
+      "AWS", "DynamoDB", "MongoDB", "Docker", "Kubernetes", "Git"
+    ],
+    "backgroundImage": "https://stsci-opo.org/STScI-01GKMKRHSSCD5RKJYSB4DFH8D8.png",
+    "imageOverlay": {
+      "title": "Cosmic Cliffs – Carina Nebula",
+      "description": "The Carina Nebula, captured by James Webb Space Telescope, reveals a stellar nursery where new stars are born. This cosmic landscape shows towering pillars of gas and dust, sculpted by stellar winds and radiation from massive young stars, creating one of the most spectacular star-forming regions in our galaxy."
+    }
+  },
+  "experience": {
+    "title": "Experience",
+    "subtitle": "Professional Journey",
+    "backgroundImage": "https://stsci-opo.org/STScI-01H9NWX3EYP3VJKTA68ZCQS8BS.jpg",
+    "overlayTitle": "Herbig-Haro 211 – Protostellar Jet",
+    "overlayDescription": "A tightly focused jet of gas blasts from a newborn star, traveling at supersonic speed. Captured by JWST in near-infrared, this image reveals the early dynamics of stellar formation.",
+    "experiences": [
+      {
+        "company": "Amazon Web Services (AWS)",
+        "position": "Software Development Engineer II",
+        "duration": "May 2024 – Mar 2025",
+        "achievements": [
+          "Designed and deployed an allow-listing and throttling feature via API Gateway across multiple stages and regions, ensuring contract compliance.",
+          "Built scalable storage infrastructure using DynamoDB and S3 with SNS/SQS for syncing changes to Elasticsearch, improving data consistency and access latency.",
+          "Implemented DynamoDB transactional batch writes to remove stale data and maintain atomicity across catalog records.",
+          "Developed event-driven notification services using SES, EventBridge, SNS, and SQS to keep customers informed in real-time.",
+          "Automated stack policy updates via AWS CDK, cutting deployment time from 1.5 days to 5 minutes."
+        ]
+      },
+      {
+        "company": "Amazon Web Services (AWS)",
+        "position": "Software Development Engineer I",
+        "duration": "Jun 2022 – Apr 2024",
+        "achievements": [
+          "Developed AWS Infrastructure-as-Code solutions using CDK and CloudFormation for scalable cloud architectures.",
+          "Built RESTful APIs with Node.js and Express, handling 10k+ requests per minute with 99.9% uptime.",
+          "Implemented comprehensive monitoring and alerting using CloudWatch, reducing incident response time by 60%.",
+          "Collaborated with cross-functional teams on microservices architecture, improving system modularity and maintainability."
+        ]
+      },
+      {
+        "company": "TechCorp Solutions",
+        "position": "Full Stack Developer",
+        "duration": "Jan 2021 – May 2022",
+        "achievements": [
+          "Developed responsive web applications using React, Redux, and Node.js serving 5000+ active users.",
+          "Integrated third-party APIs and payment gateways, increasing conversion rates by 25%.",
+          "Optimized database queries and implemented caching strategies, reducing page load times by 40%.",
+          "Mentored junior developers and conducted code reviews, improving team code quality standards."
+        ]
+      }
+    ]
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Featured Work",
+    "backgroundImage": "https://stsci-opo.org/STScI-01JY2AZA9GFMFRKWNTG0HYB8KN.jpg",
+    "overlayTitle": "Cat’s Paw Nebula (NGC 6334)",
+    "overlayDescription": "Tucked 4,000 light-years away in the constellation Scorpius, the Cat’s Paw Nebula reveals a turbulent nursery of young stars clawing their way into existence. Captured by the James Webb Space Telescope’s near-infrared gaze, this view peels back a glowing “toe bean” of gas and dust — unveiling newborn stars carving luminous paths through the cloud. What you see is a chapter mid-creation: brilliant, short-lived stars sculpt the surrounding chaos, glowing blue as they disrupt and eventually silence further star formation. This richly layered scene offers not just beauty, but clues to how stars — and perhaps worlds — begin.",
+    "projects": [
+      {
+        "name": "E-Commerce Platform",
+        "description": "A full-stack e-commerce solution built with React, Node.js, and MongoDB. Features include user authentication, payment processing, inventory management, and admin dashboard.",
+        "features": [
+          "User authentication and authorization",
+          "Product catalog with search and filtering",
+          "Shopping cart and checkout system",
+          "Payment processing with Stripe integration",
+          "Order management and tracking",
+          "Admin dashboard for inventory management",
+          "Responsive design for mobile and desktop",
+          "Real-time notifications and updates"
+        ],
+        "techStack": ["React", "Node.js", "MongoDB", "Stripe API", "JWT", "Redux"],
+        "githubUrl": "https://github.com/anmol091192/ecommerce-platform",
+        "deploymentUrl": "https://ecommerce-demo.vercel.app"
+      },
+      {
+        "name": "Task Management App",
+        "description": "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features. Built with modern web technologies.",
+        "features": [
+          "Real-time collaboration and updates",
+          "Drag-and-drop task organization",
+          "Team workspaces and project management",
+          "Task assignment and deadline tracking",
+          "File attachments and comments",
+          "Progress tracking and reporting",
+          "Mobile-responsive interface",
+          "User authentication and permissions"
+        ],
+        "techStack": ["React", "TypeScript", "Socket.io", "Express", "PostgreSQL", "Tailwind CSS"],
+        "githubUrl": "https://github.com/anmol091192/task-manager",
+        "deploymentUrl": "https://taskmanager-demo.netlify.app"
+      },
+      {
+        "name": "Weather Dashboard",
+        "description": "A responsive weather application providing current conditions, forecasts, and weather maps. Features geolocation, search functionality, and data visualization.",
+        "features": [
+          "Current weather conditions and forecasts",
+          "Location-based weather detection",
+          "Interactive weather maps and radar",
+          "Historical weather data visualization",
+          "Weather alerts and notifications",
+          "Multiple location tracking",
+          "Responsive design for all devices",
+          "Offline capability with cached data"
+        ],
+        "techStack": ["JavaScript", "Chart.js", "OpenWeather API", "HTML5", "CSS3", "LocalStorage"],
+        "githubUrl": "https://github.com/anmol091192/weather-dashboard",
+        "deploymentUrl": "https://weather-app-demo.github.io"
+      }
+    ]
+  },
+  "certificates": {
+    "title": "Certificates",
+    "description": "Continuous learning and professional development through industry-recognized certifications",
+    "backgroundImage": "https://stsci-opo.org/STScI-01HMBZMMFW050HSEVKPN5E6S5W.png",
+    "statsLabels": {
+      "total": "Total Certs",
+      "active": "Active",
+      "recent": "Recent"
+    },
+    "overlayTitle": "Face-on spiral galaxy, NGC 4254",
+    "overlayDescription": "This face-on spiral galaxy, NGC 4254, is revealed through a cosmic lens of contrast: one half glowing in infrared from the James Webb Space Telescope, the other captured in visible and ultraviolet by Hubble. Together, they expose an interplay of light and shadow — where dust obscures starlight in one view and radiates it in another.",
+    "certifications": [
+      {
+        "name": "AWS Certified Solutions Architect – Associate",
+        "issuer": "Amazon Web Services (AWS)",
+        "issueDate": "2024-01-15",
+        "expiryDate": "2027-01-15",
+        "credentialId": "AWS-ASA-123456789",
+        "credentialUrl": "https://aws.amazon.com/verification",
+        "skills": ["AWS Architecture", "Cloud Computing", "S3", "EC2", "VPC", "Lambda", "RDS"],
+        "description": "Validates expertise in designing distributed systems on AWS platform with best practices for security, reliability, and cost optimization.",
+        "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg",
+        "verified": true
+      },
+      {
+        "name": "AWS Certified Developer – Associate",
+        "issuer": "Amazon Web Services (AWS)",
+        "issueDate": "2023-09-20",
+        "expiryDate": "2026-09-20",
+        "credentialId": "AWS-DEV-987654321",
+        "credentialUrl": "https://aws.amazon.com/verification",
+        "skills": ["AWS SDK", "DynamoDB", "Lambda", "API Gateway", "CloudFormation", "CodePipeline"],
+        "description": "Demonstrates proficiency in developing and maintaining applications on the AWS platform using various AWS services and best practices.",
+        "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg",
+        "verified": true
+      },
+      {
+        "name": "Google Cloud Professional Data Engineer",
+        "issuer": "Google Cloud",
+        "issueDate": "2023-06-10",
+        "expiryDate": "2025-06-10",
+        "credentialId": "GCP-PDE-456789123",
+        "credentialUrl": "https://cloud.google.com/certification",
+        "skills": ["BigQuery", "Dataflow", "Pub/Sub", "Machine Learning", "Data Pipeline", "Apache Beam"],
+        "description": "Validates ability to design, build, and manage data processing systems and machine learning models on Google Cloud Platform.",
+        "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg",
+        "verified": true
+      },
+      {
+        "name": "Microsoft Azure AI Engineer Associate",
+        "issuer": "Microsoft",
+        "issueDate": "2023-03-15",
+        "expiryDate": "2024-03-15",
+        "credentialId": "MS-AI-789123456",
+        "credentialUrl": "https://docs.microsoft.com/learn/certifications",
+        "skills": ["Azure Cognitive Services", "Machine Learning", "Bot Framework", "Computer Vision", "NLP"],
+        "description": "Demonstrates skills in designing and implementing AI solutions using Azure Cognitive Services and Azure Machine Learning.",
+        "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
+        "verified": true
+      },
+      {
+        "name": "MongoDB Certified Developer",
+        "issuer": "MongoDB University",
+        "issueDate": "2022-11-20",
+        "expiryDate": null,
+        "credentialId": "MONGO-DEV-321654987",
+        "credentialUrl": "https://university.mongodb.com/certification",
+        "skills": ["MongoDB", "NoSQL", "Aggregation Pipeline", "Indexing", "Replication", "Sharding"],
+        "description": "Validates expertise in MongoDB database design, development, and optimization for modern applications.",
+        "logoUrl": "https://upload.wikimedia.org/wikipedia/en/4/45/MongoDB-Logo.svg",
+        "verified": true
+      }
+    ]
+  },
+  "contact": {
+    "title": "Let's Connect",
+    "subtitle": "Ready to collaborate or discuss opportunities? I'd love to hear from you!",
+    "backgroundImage": "https://stsci-opo.org/STScI-01H82GANSY85GHFY3Y2FN9R65P.png",
+    "socialLinks": {
+      "linkedin": "https://linkedin.com/in/anmol09k",
+      "github": "https://github.com/anmol091192"
+    },
+    "imageOverlay": {
+      "title": "Ring Nebula",
+      "description": "Located just 2,500 light-years away, the Ring Nebula is the luminous echo of a dying star — its outer layers cast adrift as fuel runs dry. Captured in remarkable detail by James Webb's NIRCam, this planetary nebula becomes a cosmic fossil: glowing gas, dense hydrogen globules, and carbon-rich rings spiraling outward like time's own signature. Each glowing arc and filament maps the final moments of a once-sunlike star. From its carbon-based halo to its mysterious concentric ripples — likely shaped by a hidden companion — this nebula reveals the quiet complexity of stellar endings, and the chemical legacy they leave behind."
+    },
+    "sections": {
+      "email": {
+        "title": "Email",
+        "icon": "email"
+      },
+      "resume": {
+        "title": "Resume",
+        "buttonText": "Download Resume",
+        "icon": "download"
+      },
+      "social": {
+        "title": "Connect",
+        "links": [
+          {
+            "name": "LinkedIn",
+            "url": "https://linkedin.com/in/anmol09k",
+            "color": "blue"
+          },
+          {
+            "name": "GitHub",
+            "url": "https://github.com/anmol091192",
+            "color": "gray"
+          }
+        ]
+      },
+      "form": {
+        "title": "Send Me a Message",
+        "fields": {
+          "name": "Your Name",
+          "email": "Your Email",
+          "subject": "Subject",
+          "message": "Your message...",
+          "rating": "Rate your experience (optional)",
+          "review": "Share your thoughts about working with me (optional)"
+        },
+        "submitButton": "Send Message",
+        "successMessage": "Thank you for your message! I'll get back to you soon."
+      }
+    }
+  },
+  "navigation": {
+    "sections": ["contact", "certificates", "projects", "experience", "about", "home"],
+    "sectionLabels": {
+      "home": "Home",
+      "about": "About",
+      "experience": "Experience",
+      "projects": "Projects",
+      "certificates": "Certificates",
+      "contact": "Contact"
+    }
+  },
+  "ui": {
+    "buttons": {
+      "showMore": "Show More",
+      "showLess": "Show Less",
+      "viewDemo": "View Demo",
+      "viewCode": "View Code",
+      "viewCredential": "View Credential"
+    },
+    "labels": {
+      "skills": "Skills",
+      "technologies": "Technologies",
+      "issued": "Issued",
+      "expires": "Expires",
+      "active": "Active",
+      "expired": "Expired",
+      "verified": "Verified",
+      "totalCerts": "Total Certs",
+      "recent": "Recent"
+    },
+    "placeholders": {
+      "searchProjects": "Search projects...",
+      "filterByTech": "Filter by technology..."
+    }
+  }
+}

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 
 import Contact from './sections/Contact/Contact';
-import Blog from './sections/Certificates/Certificates';
+import Certificates from './sections/Certificates/Certificates';
 import Projects from './sections/Projects/Projects';
 import Experience from './sections/Experience/Experience';
 import About from './sections/About/About';
@@ -231,7 +231,7 @@ function App() {
       </div>
 
       <section id="contact"><Contact /></section>
-      <section id="certificates"><Blog /></section>
+      <section id="certificates"><Certificates /></section>
       <section id="projects"><Projects /></section>
       <section id="experience"><Experience /></section>
       <section id="about"><About /></section>

@@ -1,94 +1,25 @@
 import React, { useState } from 'react';
 import ImageInfoOverlay from '../../components/ImageInfoOverlay/ImageInfoOverlay';
 import CertificationCard from '../../components/CertificationCard/CertificationCard';
+import { getSectionData, getCertificateStats } from '../../data/usePortfolioData';
 
 const Certifications = () => {
   const [showOverlay, setShowOverlay] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const certificatesData = getSectionData('certificates');
+  const stats = getCertificateStats();
+  
   const handleInfoClick = () => setShowOverlay(true);
   const handleClose = () => setShowOverlay(false);
 
   const sectionStyle = {
-    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://stsci-opo.org/STScI-01HMBZMMFW050HSEVKPN5E6S5W.png')`,
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${certificatesData.backgroundImage}')`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat'
   };
 
-  // Certifications data - Update with your actual certifications
-  const certifications = [
-    {
-      name: "AWS Certified Solutions Architect – Associate",
-      issuer: "Amazon Web Services (AWS)",
-      issueDate: "2024-01-15",
-      expiryDate: "2027-01-15",
-      credentialId: "AWS-ASA-123456789",
-      credentialUrl: "https://aws.amazon.com/verification",
-      skills: ["AWS Architecture", "Cloud Computing", "S3", "EC2", "VPC", "Lambda", "RDS"],
-      description: "Validates expertise in designing distributed systems on AWS platform with best practices for security, reliability, and cost optimization.",
-      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg",
-      verified: true
-    },
-    {
-      name: "AWS Certified Developer – Associate",
-      issuer: "Amazon Web Services (AWS)",
-      issueDate: "2023-09-20",
-      expiryDate: "2026-09-20",
-      credentialId: "AWS-DEV-987654321",
-      credentialUrl: "https://aws.amazon.com/verification",
-      skills: ["AWS SDK", "DynamoDB", "Lambda", "API Gateway", "CloudFormation", "CodePipeline"],
-      description: "Demonstrates proficiency in developing and maintaining applications on the AWS platform using various AWS services and best practices.",
-      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg",
-      verified: true
-    },
-    {
-      name: "Google Cloud Professional Data Engineer",
-      issuer: "Google Cloud",
-      issueDate: "2023-06-10",
-      expiryDate: "2025-06-10",
-      credentialId: "GCP-PDE-456789123",
-      credentialUrl: "https://cloud.google.com/certification",
-      skills: ["BigQuery", "Dataflow", "Pub/Sub", "Machine Learning", "Data Pipeline", "Apache Beam"],
-      description: "Validates ability to design, build, and manage data processing systems and machine learning models on Google Cloud Platform.",
-      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg",
-      verified: true
-    },
-    {
-      name: "Microsoft Azure AI Engineer Associate",
-      issuer: "Microsoft",
-      issueDate: "2023-03-15",
-      expiryDate: "2024-03-15",
-      credentialId: "MS-AI-789123456",
-      credentialUrl: "https://docs.microsoft.com/learn/certifications",
-      skills: ["Azure Cognitive Services", "Machine Learning", "Bot Framework", "Computer Vision", "NLP"],
-      description: "Demonstrates skills in designing and implementing AI solutions using Azure Cognitive Services and Azure Machine Learning.",
-      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
-      verified: true
-    },
-    {
-      name: "MongoDB Certified Developer",
-      issuer: "MongoDB University",
-      issueDate: "2022-11-20",
-      expiryDate: null,
-      credentialId: "MONGO-DEV-321654987",
-      credentialUrl: "https://university.mongodb.com/certification",
-      skills: ["MongoDB", "NoSQL", "Aggregation Pipeline", "Indexing", "Replication", "Sharding"],
-      description: "Validates expertise in MongoDB database design, development, and optimization for modern applications.",
-      logoUrl: "https://upload.wikimedia.org/wikipedia/en/4/45/MongoDB-Logo.svg",
-      verified: true
-    },
-  ];
-
-  const stats = {
-    total: certifications.length,
-    active: certifications.filter(cert => !cert.expiryDate || new Date(cert.expiryDate) > new Date()).length,
-    recentlyEarned: certifications.filter(cert => {
-      const issueDate = new Date(cert.issueDate);
-      const oneYearAgo = new Date();
-      oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
-      return issueDate > oneYearAgo;
-    }).length
-  };
+  const certifications = certificatesData.certifications || [];
 
   // Carousel functionality
   const getCardsPerSlide = () => {
@@ -155,11 +86,11 @@ const Certifications = () => {
         {/* Section Header */}
         <div className="text-center mb-2 sm:mb-3">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mx-auto mb-1 sm:mb-2 text-transparent bg-clip-text bg-gradient-to-r from-space-blue-200 via-white to-cosmic-purple-200">
-            Certificates
+            {certificatesData.title}
           </h1>
           <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-space-blue-400 to-cosmic-purple-400 mx-auto mb-2 sm:mb-3 rounded-full"></div>
           <p className="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto mb-2 sm:mb-3 px-4">
-            Continuous learning and professional development through industry-recognized certifications
+            {certificatesData.description}
           </p>
           
           {/* Statistics */}
@@ -168,19 +99,19 @@ const Certifications = () => {
               <div className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-space-blue-400 to-cosmic-purple-400">
                 {stats.total}
               </div>
-              <div className="text-xs text-gray-400">Total Certs</div>
+              <div className="text-xs text-gray-400">{certificatesData.statsLabels.total}</div>
             </div>
             <div className="text-center">
               <div className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400">
                 {stats.active}
               </div>
-              <div className="text-xs text-gray-400">Active</div>
+              <div className="text-xs text-gray-400">{certificatesData.statsLabels.active}</div>
             </div>
             <div className="text-center">
               <div className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400">
                 {stats.recentlyEarned}
               </div>
-              <div className="text-xs text-gray-400">Recent</div>
+              <div className="text-xs text-gray-400">{certificatesData.statsLabels.recent}</div>
             </div>
           </div>
         </div>
