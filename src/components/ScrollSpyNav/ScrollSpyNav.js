@@ -1,7 +1,7 @@
 // File: src/components/ScrollSpyNav.jsx
 import React, { useEffect, useState } from 'react';
 
-const sections = ["contact", "blog", "projects", "experience", "about", "home"];
+const sections = ["contact", "certificates", "projects", "experience", "about", "home"];
 const ScrollSpyNav = () => {
   const [active, setActive] = useState("home");
 

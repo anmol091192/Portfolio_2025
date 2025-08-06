@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 
 import Contact from './sections/Contact/Contact';
-import Blog from './sections/Blog/Blog';
+import Blog from './sections/Certificates/Certificates';
 import Projects from './sections/Projects/Projects';
 import Experience from './sections/Experience/Experience';
 import About from './sections/About/About';
@@ -71,7 +71,7 @@ function App() {
       
       // Update current section in sessionStorage based on visible section
       const sections = [...document.querySelectorAll("section")];
-      const sectionOrder = ['home', 'about', 'experience', 'projects', 'blog', 'contact'];
+      const sectionOrder = ['home', 'about', 'experience', 'projects', 'certificates', 'contact'];
       
       if (docHeight <= windowHeight) {
         // For non-scrollable pages, find which section is most visible
@@ -147,7 +147,7 @@ function App() {
       console.log('Page not scrollable - using section cycling');
       
       // Use a simple counter to cycle through sections
-      const sectionOrder = ['home', 'about', 'experience', 'projects', 'blog', 'contact'];
+      const sectionOrder = ['home', 'about', 'experience', 'projects', 'certificates', 'contact'];
       
       // Get or initialize current section index from sessionStorage
       let currentIndex = parseInt(sessionStorage.getItem('currentSectionIndex') || '0');
@@ -166,7 +166,7 @@ function App() {
     }
     
     // Original logic for scrollable pages
-    const sectionOrder = ['home', 'about', 'experience', 'projects', 'blog', 'contact'];
+    const sectionOrder = ['home', 'about', 'experience', 'projects', 'certificates', 'contact'];
     
     const orderedSections = sectionOrder.map(id => 
       sections.find(section => section.id === id)

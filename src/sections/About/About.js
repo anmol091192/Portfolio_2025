@@ -23,7 +23,7 @@ const About = () => {
       </button>
       <div className="flex flex-col items-center justify-center text-center w-full max-w-3xl mx-auto p-10 bg-black bg-opacity-60 rounded-xl shadow-2xl">
         <img
-          src="https://avatars.githubusercontent.com/u/20846156?v=4"
+          src="https://avatars.githubusercontent.com/u/20846157"
           alt="Anmol Khandekar"
           className="w-40 h-40 md:w-32 md:h-32 object-cover rounded-full border-4 border-white mb-6"
           style={{

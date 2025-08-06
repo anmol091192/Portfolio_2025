@@ -30,7 +30,7 @@ const ExperienceCard = ({ company, position, duration, achievements }) => {
             Key Achievements
           </h5>
           
-          <ul className="space-y-4 flex-1">
+          <ul className="space-y-4 flex-1 text-left">
             {displayedAchievements.map((achievement, index) => (
               <li key={index} className="flex items-start group/item">
                 <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-r from-space-blue-400 to-cosmic-purple-400 flex items-center justify-center mr-4 mt-1 group-hover/item:scale-110 transition-transform duration-300">
