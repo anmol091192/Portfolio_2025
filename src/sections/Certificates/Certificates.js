@@ -180,6 +180,7 @@ const Certifications = () => {
                           description={cert.description}
                           logoUrl={cert.logoUrl}
                           verified={cert.verified}
+                          certificatePdf={cert.certificatePdf}
                         />
                       </div>
                     ))}

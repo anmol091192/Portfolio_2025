@@ -162,64 +162,89 @@
     "overlayDescription": "This face-on spiral galaxy, NGC 4254, is revealed through a cosmic lens of contrast: one half glowing in infrared from the James Webb Space Telescope, the other captured in visible and ultraviolet by Hubble. Together, they expose an interplay of light and shadow — where dust obscures starlight in one view and radiates it in another.",
     "certifications": [
       {
-        "name": "AWS Certified Solutions Architect – Associate",
-        "issuer": "Amazon Web Services (AWS)",
-        "issueDate": "2024-01-15",
-        "expiryDate": "2027-01-15",
-        "credentialId": "AWS-ASA-123456789",
-        "credentialUrl": "https://aws.amazon.com/verification",
-        "skills": ["AWS Architecture", "Cloud Computing", "S3", "EC2", "VPC", "Lambda", "RDS"],
-        "description": "Validates expertise in designing distributed systems on AWS platform with best practices for security, reliability, and cost optimization.",
-        "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg",
-        "verified": true
-      },
-      {
-        "name": "AWS Certified Developer – Associate",
-        "issuer": "Amazon Web Services (AWS)",
-        "issueDate": "2023-09-20",
-        "expiryDate": "2026-09-20",
-        "credentialId": "AWS-DEV-987654321",
-        "credentialUrl": "https://aws.amazon.com/verification",
-        "skills": ["AWS SDK", "DynamoDB", "Lambda", "API Gateway", "CloudFormation", "CodePipeline"],
-        "description": "Demonstrates proficiency in developing and maintaining applications on the AWS platform using various AWS services and best practices.",
-        "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg",
-        "verified": true
-      },
-      {
-        "name": "Google Cloud Professional Data Engineer",
-        "issuer": "Google Cloud",
-        "issueDate": "2023-06-10",
-        "expiryDate": "2025-06-10",
-        "credentialId": "GCP-PDE-456789123",
-        "credentialUrl": "https://cloud.google.com/certification",
-        "skills": ["BigQuery", "Dataflow", "Pub/Sub", "Machine Learning", "Data Pipeline", "Apache Beam"],
-        "description": "Validates ability to design, build, and manage data processing systems and machine learning models on Google Cloud Platform.",
-        "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg",
-        "verified": true
-      },
-      {
-        "name": "Microsoft Azure AI Engineer Associate",
-        "issuer": "Microsoft",
-        "issueDate": "2023-03-15",
-        "expiryDate": "2024-03-15",
-        "credentialId": "MS-AI-789123456",
-        "credentialUrl": "https://docs.microsoft.com/learn/certifications",
-        "skills": ["Azure Cognitive Services", "Machine Learning", "Bot Framework", "Computer Vision", "NLP"],
-        "description": "Demonstrates skills in designing and implementing AI solutions using Azure Cognitive Services and Azure Machine Learning.",
-        "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
-        "verified": true
-      },
-      {
-        "name": "MongoDB Certified Developer",
-        "issuer": "MongoDB University",
-        "issueDate": "2022-11-20",
+        "name": "Applied Generative AI Specialization",
+        "issuer": "Purdue University Online & Simplilearn",
+        "issueDate": "2025-07-29",
         "expiryDate": null,
-        "credentialId": "MONGO-DEV-321654987",
-        "credentialUrl": "https://university.mongodb.com/certification",
-        "skills": ["MongoDB", "NoSQL", "Aggregation Pipeline", "Indexing", "Replication", "Sharding"],
-        "description": "Validates expertise in MongoDB database design, development, and optimization for modern applications.",
-        "logoUrl": "https://upload.wikimedia.org/wikipedia/en/4/45/MongoDB-Logo.svg",
-        "verified": true
+        "credentialId": "156461861",
+        "credentialUrl": "https://success.simplilearn.com/8c67c4dd-9279-447d-b333-bc2ccce6e197#acc.yL9dPYts",
+        "skills": [
+          "Python Programming", "Prompt Engineering", "Variational Autoencoders (VAEs)",
+          "Generative Adversarial Networks (GANs)", "Transformers", "LLM Architecture", "Attention Mechanism",
+          "Langchain for Workflow Design", "GenAI Application Development", "LLM Fine-Tuning", 
+          "LLM Benchmarking", "Stable Diffusion"
+        ],
+        "description": "Comprehensive program covering cutting-edge generative AI concepts including prompt engineering, large language models, attention mechanisms, and LLM fine-tuning. Mastered in-demand tools for building intelligent systems and AI applications.",
+        "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Purdue_Boilermakers_logo.svg/512px-Purdue_Boilermakers_logo.svg.png",
+        "verified": true,
+        "certificatePdf": "/assets/certificates/Purdue_CourseCompletion_Certificate.pdf"
+      },
+      {
+        "name": "Building Large Language Models",
+        "issuer": "Purdue University Online & Simplilearn",
+        "issueDate": "2025-07-29",
+        "expiryDate": null,
+        "credentialId": "PU-LLM-2025",
+        "credentialUrl": "https://success.simplilearn.com/profile/anmolkhandekar321974/wallet",
+        "skills": [
+          "Large Language Models", "LLM Architecture", "Neural Network Design", "Training Methodologies",
+          "Model Optimization", "Transformer Architecture", "Attention Mechanisms", "Pre-training Techniques",
+          "Fine-tuning Strategies", "Model Evaluation", "LLM Deployment"
+        ],
+        "description": "Advanced course focused on building and training large language models from scratch. Covered architectural design, training methodologies, optimization techniques, and deployment strategies for enterprise-scale LLM applications.",
+        "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Purdue_Boilermakers_logo.svg/512px-Purdue_Boilermakers_logo.svg.png",
+        "verified": true,
+        "certificatePdf": "/assets/certificates/Purdue_BuildingLLM_certificate.pdf"
+      },
+      {
+        "name": "GenAI Capstone Project",
+        "issuer": "Purdue University Online & Simplilearn",
+        "issueDate": "2025-07-29",
+        "expiryDate": null,
+        "credentialId": "PU-CAPSTONE-2025",
+        "credentialUrl": "https://success.simplilearn.com/profile/anmolkhandekar321974/wallet",
+        "skills": [
+          "End-to-End AI Development", "Project Management", "AI Solution Architecture", "Real-world Implementation",
+          "Stakeholder Communication", "Performance Optimization", "Model Integration", "Production Deployment",
+          "Technical Documentation", "User Experience Design", "AI Ethics Implementation"
+        ],
+        "description": "Culminating capstone project demonstrating practical application of generative AI concepts through a comprehensive real-world solution. Integrated multiple AI technologies to solve complex business challenges with measurable impact.",
+        "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Purdue_Boilermakers_logo.svg/512px-Purdue_Boilermakers_logo.svg.png",
+        "verified": true,
+        "certificatePdf": "/assets/certificates/Purdue_Capstone_Certificate.pdf"
+      },
+      {
+        "name": "AI Models and Architecture",
+        "issuer": "Purdue University Online & Simplilearn",
+        "issueDate": "2025-07-29",
+        "expiryDate": null,
+        "credentialId": "PU-MODELS-2025",
+        "credentialUrl": "https://success.simplilearn.com/profile/anmolkhandekar321974/wallet",
+        "skills": [
+          "AI Model Architecture", "Model Selection",
+          "Architecture Patterns", "Computational Efficiency", "Scalability Design", "Model Comparison",
+          "Performance Benchmarking", "Architecture Optimization", "Multi-modal Systems"
+        ],
+        "description": "Comprehensive study of AI model architectures covering design principles, performance optimization, and scalability considerations. Explored various architectural patterns and their applications in real-world AI systems.",
+        "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Purdue_Boilermakers_logo.svg/512px-Purdue_Boilermakers_logo.svg.png",
+        "verified": true,
+        "certificatePdf": "/assets/certificates/Purdue_ModelAndArchitecture_Certificate.pdf"
+      },
+      {
+        "name": "Python Programming Basics",
+        "issuer": "Purdue University Online & Simplilearn",
+        "issueDate": "2025-07-29",
+        "expiryDate": null,
+        "credentialId": "PU-PYTHON-2025",
+        "credentialUrl": "https://success.simplilearn.com/profile/anmolkhandekar321974/wallet",
+        "skills": [
+          "Python Programming", "Data Structures", "Object-Oriented Programming", "Error Handling",
+          "File Operations", "Libraries and Modules", "Python for AI/ML"
+        ],
+        "description": "Foundational course covering Python programming fundamentals, data structures, OOP concepts, and essential libraries for AI/ML development as part of the Applied Generative AI Specialization.",
+        "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Purdue_Boilermakers_logo.svg/512px-Purdue_Boilermakers_logo.svg.png",
+        "verified": true,
+        "certificatePdf": "/assets/certificates/Purdue_PythonBasics_Certificate.pdf"
       }
     ]
   },
