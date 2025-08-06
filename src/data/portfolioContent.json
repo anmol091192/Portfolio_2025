@@ -82,55 +82,56 @@
     "overlayDescription": "Tucked 4,000 light-years away in the constellation Scorpius, the Cat’s Paw Nebula reveals a turbulent nursery of young stars clawing their way into existence. Captured by the James Webb Space Telescope’s near-infrared gaze, this view peels back a glowing “toe bean” of gas and dust — unveiling newborn stars carving luminous paths through the cloud. What you see is a chapter mid-creation: brilliant, short-lived stars sculpt the surrounding chaos, glowing blue as they disrupt and eventually silence further star formation. This richly layered scene offers not just beauty, but clues to how stars — and perhaps worlds — begin.",
     "projects": [
       {
-        "name": "E-Commerce Platform",
-        "description": "A full-stack e-commerce solution built with React, Node.js, and MongoDB. Features include user authentication, payment processing, inventory management, and admin dashboard.",
+        "name": "InsightForge: AI Business Intelligence Q&A",
+        "description": "An intelligent business intelligence application that allows users to upload their data (CSV or PDF) and ask natural language questions to get insights powered by AI. Combines retrieval-augmented generation (RAG) with AI agents for accurate, context-aware answers.",
         "features": [
-          "User authentication and authorization",
-          "Product catalog with search and filtering",
-          "Shopping cart and checkout system",
-          "Payment processing with Stripe integration",
-          "Order management and tracking",
-          "Admin dashboard for inventory management",
-          "Responsive design for mobile and desktop",
-          "Real-time notifications and updates"
+          "Multi-format Data Support: Upload CSV files or PDF documents",
+          "Flexible AI Provider Selection: Choose between Google Gemini and OpenAI GPT models",
+          "User-Provided API Keys: Secure approach with session-only storage",
+          "Provider-Specific Embeddings: Automatic selection based on chosen provider",
+          "Intelligent Agent System: Combines document retrieval with web search",
+          "Automatic Evaluation: Built-in evaluation for CSV-based queries",
+          "Interactive Visualizations: Automatic charts and graphs for sales data",
+          "Chat History: Persistent conversation history for better context",
+          "Real-time Processing: Fast document processing with FAISS vector indexing"
         ],
-        "techStack": ["React", "Node.js", "MongoDB", "Stripe API", "JWT", "Redux"],
-        "githubUrl": "https://github.com/anmol091192/ecommerce-platform",
-        "deploymentUrl": "https://ecommerce-demo.vercel.app"
+        "techStack": ["Python", "Streamlit", "LangChain", "FAISS", "OpenAI", "Google Gemini", "Matplotlib", "Pandas"],
+        "githubUrl": "https://github.com/anmol091192/InsightForge-AI-Business-Intelligence-Q-A",
+        "deploymentUrl": "https://insightforge-ai-business-intelligence.streamlit.app/"
       },
       {
-        "name": "Task Management App",
-        "description": "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features. Built with modern web technologies.",
+        "name": "NewsGenie: AI News & Web Search Assistant",
+        "description": "AI-powered Streamlit app that lets you chat with a smart assistant to get latest news headlines by category or search the web for answers. Features robust workflow with error handling and powered by Google Gemini, GNews API, and Serper search.",
         "features": [
-          "Real-time collaboration and updates",
-          "Drag-and-drop task organization",
-          "Team workspaces and project management",
-          "Task assignment and deadline tracking",
-          "File attachments and comments",
-          "Progress tracking and reporting",
-          "Mobile-responsive interface",
-          "User authentication and permissions"
+          "AI Chatbot: Handles news and generic information queries in natural language",
+          "News Integration: Fetches real-time news using GNews API",
+          "Web Search: Answers factual questions via Serper Google Search API",
+          "LangGraph Workflow: Node-based decision routing for reliable query handling",
+          "User-Friendly API Key Input: Secure interface for Gemini API key",
+          "Robust Error Handling: Graceful fallbacks for network issues",
+          "Interactive UI: Clean Streamlit interface with conversation history",
+          "Smart Input Handling: Either text query OR news category, not both"
         ],
-        "techStack": ["React", "TypeScript", "Socket.io", "Express", "PostgreSQL", "Tailwind CSS"],
-        "githubUrl": "https://github.com/anmol091192/task-manager",
-        "deploymentUrl": "https://taskmanager-demo.netlify.app"
+        "techStack": ["Python", "Streamlit", "AutoGen", "LangGraph", "Google Gemini", "GNews API", "Serper API"],
+        "githubUrl": "https://github.com/anmol091192/NewsGenie-AI-News-Search-Assistant",
+        "deploymentUrl": "https://newsgenie-ai-news-search-assistant.streamlit.app/"
       },
       {
-        "name": "Weather Dashboard",
-        "description": "A responsive weather application providing current conditions, forecasts, and weather maps. Features geolocation, search functionality, and data visualization.",
+        "name": "AI PDF Assistant - Universal PDF Chatbot",
+        "description": "A Gradio-based chatbot that can answer questions about any PDF document using RAG (Retrieval Augmented Generation). Upload your own PDF files and get instant AI-powered answers with semantic search capabilities.",
         "features": [
-          "Current weather conditions and forecasts",
-          "Location-based weather detection",
-          "Interactive weather maps and radar",
-          "Historical weather data visualization",
-          "Weather alerts and notifications",
-          "Multiple location tracking",
-          "Responsive design for all devices",
-          "Offline capability with cached data"
+          "AI-powered chat interface using OpenAI's GPT-3.5-turbo",
+          "Upload any PDF document through the web interface",
+          "Semantic search through document chunks using ChromaDB",
+          "User-friendly Gradio web interface with file upload",
+          "Real-time question answering about uploaded documents",
+          "Secure API key management with environment variables",
+          "Automatic fallback to demo mode if no PDF is uploaded",
+          "Support for multiple document formats and sizes"
         ],
-        "techStack": ["JavaScript", "Chart.js", "OpenWeather API", "HTML5", "CSS3", "LocalStorage"],
-        "githubUrl": "https://github.com/anmol091192/weather-dashboard",
-        "deploymentUrl": "https://weather-app-demo.github.io"
+        "techStack": ["Python", "Gradio", "OpenAI GPT", "ChromaDB", "LangChain", "RAG"],
+        "githubUrl": "https://github.com/anmol091192/AI_PDF_Chatbot",
+        "deploymentUrl": null
       }
     ]
   },
