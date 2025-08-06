@@ -19,11 +19,17 @@
   },
   "about": {
     "title": "About Me",
-    "subtitle": "Software Development Engineer with a passion for building scalable solutions",
-    "description": "I'm a passionate Software Development Engineer with experience in cloud technologies, distributed systems, and full-stack development. I enjoy solving complex problems and building scalable solutions that make a real impact.",
+    "subtitle": "Frontend-oriented Full-Stack Software Engineer with 6+ years of experience",
+    "description": "Frontend-oriented Full-Stack Software Engineer with 6+ years of experience delivering scalable, user-centric web applications across startup and enterprise environments. Skilled in building dynamic, accessible UIs with React, TypeScript, and modern component libraries. Experienced in designing RESTful APIs, orchestrating data flows with event-driven architectures (SNS/SQS), and implementing scalable storage solutions using AWS services like DynamoDB, S3, and Lambda. Recently completed the Generative AI Specialization at Purdue University, expanding my expertise in building practical AI-powered applications and agentic workflows.",
     "skills": [
-      "JavaScript", "TypeScript", "Python", "Java", "React", "Node.js", 
-      "AWS", "DynamoDB", "MongoDB", "Docker", "Kubernetes", "Git"
+      "React", "TypeScript", "JavaScript", "Python", "Node.js", "Express", 
+      "AWS", "DynamoDB", "S3", "Lambda", "SNS/SQS", "API Gateway", 
+      "React Native", "Redux", "Material UI", "Next.js", "Socket.io",
+      "MongoDB", "Elasticsearch", "Docker", "Git",
+      "Generative AI", "Large Language Models", "Prompt Engineering", 
+      "LangChain", "Transformers", "LLM Fine-Tuning", "Attention Mechanism",
+      "Generative Adversarial Networks (GANs)", "Variational Autoencoders (VAEs)", 
+      "Stable Diffusion", "LLM Architecture", "LLM Benchmarking", "Explainable AI"
     ],
     "backgroundImage": "https://stsci-opo.org/STScI-01GKMKRHSSCD5RKJYSB4DFH8D8.png",
     "imageOverlay": {
@@ -40,36 +46,44 @@
     "experiences": [
       {
         "company": "Amazon Web Services (AWS)",
-        "position": "Software Development Engineer II",
+        "position": "Software Development Engineer",
         "duration": "May 2024 – Mar 2025",
         "achievements": [
-          "Designed and deployed an allow-listing and throttling feature via API Gateway across multiple stages and regions, ensuring contract compliance.",
-          "Built scalable storage infrastructure using DynamoDB and S3 with SNS/SQS for syncing changes to Elasticsearch, improving data consistency and access latency.",
-          "Implemented DynamoDB transactional batch writes to remove stale data and maintain atomicity across catalog records.",
-          "Developed event-driven notification services using SES, EventBridge, SNS, and SQS to keep customers informed in real-time.",
-          "Automated stack policy updates via AWS CDK, cutting deployment time from 1.5 days to 5 minutes."
+          "Designed and implemented an end-to-end allow-listing and throttling feature, deploying API Gateway configurations across multiple stages (dev, staging, prod) and AWS regions, and updated existing REST APIs to enforce these rules, ensuring compliance with customer contract terms.",
+          "Enhanced and maintained storage infrastructure for catalogs and documents in the AWS Marketplace, leveraging DynamoDB for metadata management and S3 for document storage while integrating SNS and SQS to sync changes from DynamoDB to Elasticsearch, improving scalability and retrieval efficiency.",
+          "Implemented batch writes with DynamoDB transactions to streamline workflows and eliminate stale data, ensuring consistent updates across related records in the database.",
+          "Developed and maintained notification services for the AWS Marketplace using Amazon SES for email delivery, integrated with SQS, SNS, and EventBridge to enable real-time, event-driven customer updates.",
+          "Automated stack policy updates using AWS CDK, reducing manual development time from 1.5 days to 5 minutes per deployment, enhancing operational efficiency."
         ]
       },
       {
-        "company": "Amazon Web Services (AWS)",
-        "position": "Software Development Engineer I",
-        "duration": "Jun 2022 – Apr 2024",
+        "company": "Linqia",
+        "position": "Software Engineer",
+        "duration": "Sept 2021 – Apr 2024",
         "achievements": [
-          "Developed AWS Infrastructure-as-Code solutions using CDK and CloudFormation for scalable cloud architectures.",
-          "Built RESTful APIs with Node.js and Express, handling 10k+ requests per minute with 99.9% uptime.",
-          "Implemented comprehensive monitoring and alerting using CloudWatch, reducing incident response time by 60%.",
-          "Collaborated with cross-functional teams on microservices architecture, improving system modularity and maintainability."
+          "Led the transition of frontend business logic to a Node server, enhancing system performance and reducing load times in collaboration with a junior engineer.",
+          "Enhanced search precision in Frontend and Node.js, achieving a 60% reduction in latency through Node.js optimization.",
+          "Developed Python CRUD endpoints using the Bottle framework, improving workflow processes and system responsiveness. Integrated the Python backend server with NodeJS for streamlined server-side operations.",
+          "Built NodeJS and Express API endpoints for pagination, sorting, and filtering, optimizing data management.",
+          "Implemented an infinite scroll feature on the search page, enhancing the user experience and efficiency in searching for influencers.",
+          "Implemented pagination and additional features for content sharing, leading to faster data retrieval and improved user interaction.",
+          "Utilized socket.io to establish real-time communication between the Frontend and Backend servers, enabling the delivery of instant notifications to users."
         ]
       },
       {
-        "company": "TechCorp Solutions",
-        "position": "Full Stack Developer",
-        "duration": "Jan 2021 – May 2022",
+        "company": "Egen Solutions",
+        "position": "Software Developer",
+        "duration": "Mar 2019 – Sept 2021",
         "achievements": [
-          "Developed responsive web applications using React, Redux, and Node.js serving 5000+ active users.",
-          "Integrated third-party APIs and payment gateways, increasing conversion rates by 25%.",
-          "Optimized database queries and implemented caching strategies, reducing page load times by 40%.",
-          "Mentored junior developers and conducted code reviews, improving team code quality standards."
+          "Worked on cart, checkout, auto-reorder, and order confirmation pages, creating new components using React, Handlebars, jQuery, and vanilla Javascript.",
+          "Handled login and guest phases, contributing to a seamless user experience.",
+          "Utilized Sauce Labs for testing and optimization to achieve consistent cross-platform performance, ensuring consistent functionality and user experience across Chrome, Firefox, Safari, IE and Edge.",
+          "Contributed to UI design and implementation for the ordering system using React, enhancing user interface efficiency and responsiveness.",
+          "Developed key features for the mobile application in React Native, ensuring a seamless and user-friendly mobile experience.",
+          "Implemented functionality for generating PDF receipts for orders, accessible both on the UI and the mobile app, providing customers with detailed and convenient transaction records.",
+          "Created UI for monitoring and controlling traffic security cameras using React, Redux, and Material UI.",
+          "Utilized HLS.js for live streaming security camera footage, contributing to a comprehensive security solution.",
+          "Utilized Next.js for server-side rendering and efficient data fetching from backend services."
         ]
       }
     ]

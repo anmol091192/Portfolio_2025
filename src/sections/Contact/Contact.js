@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import ImageInfoOverlay from '../../components/ImageInfoOverlay/ImageInfoOverlay';
 import { getSectionData } from '../../data/usePortfolioData';
+// import { emailjsConfig } from '../../config/emailjs';
 
 const Contact = () => {
   const [showOverlay, setShowOverlay] = useState(false);
@@ -8,9 +10,7 @@ const Contact = () => {
     name: '',
     email: '',
     subject: '',
-    message: '',
-    rating: 5,
-    review: ''
+    message: ''
   });
 
   // Get contact data from centralized JSON
@@ -27,20 +27,85 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleContactSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    // You can integrate with email service or backend here
-    alert(contactData.sections.form.successMessage);
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: '',
-      rating: 5,
-      review: ''
-    });
+    
+    // Basic validation
+    if (!formData.name.trim() || !formData.email.trim() || !formData.subject.trim() || !formData.message.trim()) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+    
+    try {
+      // Show loading state
+      const submitButton = e.target.querySelector('button[type="submit"]');
+      submitButton.textContent = 'Sending...';
+      submitButton.disabled = true;
+      
+      // EmailJS Configuration
+      // Replace these with your actual EmailJS credentials
+      const SERVICE_ID = 'YOUR_SERVICE_ID';
+      const TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  
+      const PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+      
+      // Prepare template parameters for EmailJS
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        to_email: 'anmol09k@gmail.com',
+        subject: formData.subject,
+        message: formData.message,
+        reply_to: formData.email
+      };
+      
+      // Send email using EmailJS
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
+      
+      // Success
+      alert(contactData.sections.form.successMessage);
+      
+      // Reset form fields
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+      
+    } catch (error) {
+      console.error('Error sending email:', error);
+      
+      // Fallback: mailto link for direct email
+      const subject = encodeURIComponent(`Portfolio Contact: ${formData.subject}`);
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\n` +
+        `Email: ${formData.email}\n` +
+        `Subject: ${formData.subject}\n\n` +
+        `Message:\n${formData.message}`
+      );
+      const mailtoLink = `mailto:anmol09k@gmail.com?subject=${subject}&body=${body}`;
+      
+      if (window.confirm('Unable to send email automatically. Would you like to open your email client instead?')) {
+        window.location.href = mailtoLink;
+      } else {
+        alert('Please try again later or contact me directly at anmol09k@gmail.com');
+      }
+      
+    } finally {
+      // Reset button state
+      const submitButton = e.target.querySelector('button[type="submit"]');
+      if (submitButton) {
+        submitButton.textContent = 'Send Message';
+        submitButton.disabled = false;
+      }
+    }
   };
 
   const sectionStyle = {
@@ -85,7 +150,7 @@ const Contact = () => {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 sm:gap-6 flex-1 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 flex-1 items-start">
           {/* Left Column - Contact Info & Social */}
           <div className="lg:col-span-1 space-y-4">
             {/* Direct Contact */}
@@ -127,7 +192,7 @@ const Contact = () => {
 
           {/* Middle Column - Contact Form */}
           <div className="lg:col-span-2">
-            <form onSubmit={handleSubmit} className="bg-gradient-to-br from-space-blue-900/30 to-cosmic-purple-900/30 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/20 h-full flex flex-col">
+            <form onSubmit={handleContactSubmit} className="bg-gradient-to-br from-space-blue-900/30 to-cosmic-purple-900/30 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/20 h-full flex flex-col">
               <h3 className="text-xl font-semibold text-white mb-4 text-center lg:text-left">{contactData.sections.form.title}</h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -186,56 +251,6 @@ const Contact = () => {
                 Send Message
               </button>
             </form>
-          </div>
-
-          {/* Right Column - Quick Review/Rating */}
-          <div className="lg:col-span-1">
-            <div className="bg-gradient-to-br from-space-blue-900/30 to-cosmic-purple-900/30 backdrop-blur-sm rounded-xl p-4 sm:p-5 border border-white/20 h-full flex flex-col">
-              <div className="flex items-center space-x-3 mb-3">
-                <div className="w-8 h-8 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-lg flex items-center justify-center">
-                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold text-white">Quick Review</h3>
-              </div>
-              
-              <form onSubmit={handleSubmit} className="flex-1 flex flex-col">
-                <div className="mb-4">
-                  <label className="block text-gray-300 text-sm mb-2">Rate your experience</label>
-                  <div className="flex space-x-1 mb-3">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <button
-                        key={star}
-                        type="button"
-                        onClick={() => setFormData(prev => ({ ...prev, rating: star }))}
-                        className={`text-2xl transition-colors ${formData.rating >= star ? 'text-yellow-400' : 'text-gray-600 hover:text-yellow-300'}`}
-                      >
-                        ★
-                      </button>
-                    ))}
-                  </div>
-                </div>
-                
-                <div className="flex-1 mb-4">
-                  <textarea
-                    name="review"
-                    placeholder="Leave a quick review..."
-                    value={formData.review}
-                    onChange={handleInputChange}
-                    rows="4"
-                    className="w-full h-full px-3 py-2 bg-black/30 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400 transition-all text-sm resize-none"
-                  ></textarea>
-                </div>
-                
-                <button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-500 hover:to-orange-500 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 text-sm"
-                >
-                  Submit Review
-                </button>
-              </form>
-            </div>
           </div>
         </div>
       </div>
