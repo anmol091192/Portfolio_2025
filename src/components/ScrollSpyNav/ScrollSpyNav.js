@@ -31,7 +31,7 @@ const ScrollSpyNav = () => {
     e.preventDefault();
     
     // Update sessionStorage with the correct section index for rocket navigation
-    const sectionOrder = ['home', 'about', 'experience', 'projects', 'blog', 'contact'];
+    const sectionOrder = ['home', 'about', 'experience', 'projects', 'certificates', 'contact'];
     const sectionIndex = sectionOrder.indexOf(sectionId);
     
     if (sectionIndex !== -1) {
@@ -47,13 +47,13 @@ const ScrollSpyNav = () => {
   };
 
   return (
-    <div className="fixed top-1/2 left-6 transform -translate-y-1/2 z-50 flex flex-col space-y-3">
+    <div className="fixed top-1/2 left-2 sm:left-6 transform -translate-y-1/2 z-50 flex flex-col space-y-2 sm:space-y-3">
       {sections.map((id) => (
         <a
           key={id}
           href={`#${id}`}
           className={`
-            px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300
+            px-2 py-1 sm:px-3 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300
             bg-white bg-opacity-10 backdrop-blur-sm border border-white border-opacity-20
             hover:bg-opacity-20 hover:scale-105
             ${active === id 
@@ -63,7 +63,12 @@ const ScrollSpyNav = () => {
           `}
           onClick={(e) => handleNavClick(id, e)}
         >
-          {id.charAt(0).toUpperCase() + id.slice(1)}
+          <span className="block sm:hidden">
+            {id.charAt(0).toUpperCase()}
+          </span>
+          <span className="hidden sm:block">
+            {id.charAt(0).toUpperCase() + id.slice(1)}
+          </span>
         </a>
       ))}
     </div>

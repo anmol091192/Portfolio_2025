@@ -73,7 +73,7 @@ const Projects = () => {
   return (
     <section 
       id="projects" 
-      className="relative min-h-screen flex flex-col justify-center items-center text-white py-20 px-6 lg:px-12 w-full"
+      className="relative min-h-screen flex flex-col justify-center items-center text-white py-16 sm:py-20 px-4 sm:px-6 lg:px-12 w-full"
       style={sectionStyle}
     >
       {/* Background Overlay */}
@@ -81,24 +81,24 @@ const Projects = () => {
       
       {/* Info Button */}
       <button 
-        className="absolute top-6 right-6 z-20 p-3 bg-gradient-to-r from-space-blue-500/20 to-cosmic-purple-500/20 backdrop-blur-sm rounded-full hover:from-space-blue-500/40 hover:to-cosmic-purple-500/40 transition-all duration-300 border border-white/20 hover:border-white/40 group" 
+        className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 p-2 sm:p-3 bg-gradient-to-r from-space-blue-500/20 to-cosmic-purple-500/20 backdrop-blur-sm rounded-full hover:from-space-blue-500/40 hover:to-cosmic-purple-500/40 transition-all duration-300 border border-white/20 hover:border-white/40 group" 
         onClick={handleInfoClick}
       >
         <img 
           src="https://img.icons8.com/ios-filled/50/ffffff/telescope.png" 
           alt="info" 
-          className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" 
+          className="w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform duration-300" 
         />
       </button>
       
       {/* Content Container */}
       <div className="relative z-10 max-w-7xl mx-auto w-full">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl lg:text-6xl font-bold mx-auto mb-6 text-transparent bg-clip-text bg-gradient-to-r from-space-blue-200 via-white to-cosmic-purple-200">
+        <div className="text-center mb-12 sm:mb-16">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mx-auto mb-4 sm:mb-6 text-transparent bg-clip-text bg-gradient-to-r from-space-blue-200 via-white to-cosmic-purple-200">
             Projects
           </h1>
-          <div className="w-24 h-1 bg-gradient-to-r from-space-blue-400 to-cosmic-purple-400 mx-auto mb-8 rounded-full"></div>
+          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-space-blue-400 to-cosmic-purple-400 mx-auto mb-6 sm:mb-8 rounded-full"></div>
         </div>
         
         {/* Projects Cards Grid */}

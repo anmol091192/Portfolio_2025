@@ -231,7 +231,7 @@ function App() {
       </div>
 
       <section id="contact"><Contact /></section>
-      <section id="blog"><Blog /></section>
+      <section id="certificates"><Blog /></section>
       <section id="projects"><Projects /></section>
       <section id="experience"><Experience /></section>
       <section id="about"><About /></section>

@@ -35,16 +35,16 @@ const Home = () => {
       </button>
       
       {/* Content Container */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 lg:px-12">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 sm:px-6 lg:px-12">
         <div className="text-center max-w-4xl mx-auto">
-          <h1 className="text-6xl lg:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-space-blue-200 via-white to-cosmic-purple-200 animate-fade-in-up">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 text-transparent bg-clip-text bg-gradient-to-r from-space-blue-200 via-white to-cosmic-purple-200 animate-fade-in-up">
             Anmol Khandekar
           </h1>
-          <div className="w-32 h-1 bg-gradient-to-r from-space-blue-400 to-cosmic-purple-400 mx-auto mb-8 rounded-full"></div>
-          <h2 className="text-2xl lg:text-3xl mb-8 font-light text-gray-300 animate-fade-in-up" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
+          <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-space-blue-400 to-cosmic-purple-400 mx-auto mb-6 sm:mb-8 rounded-full"></div>
+          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-6 sm:mb-8 font-light text-gray-300 animate-fade-in-up px-4" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
             Software Engineer · Explorer of the Digital Unknown
           </h2>
-          <p className="text-lg lg:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.4s', animationFillMode: 'both' }}>
+          <p className="text-base sm:text-lg lg:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed animate-fade-in-up px-4" style={{ animationDelay: '0.4s', animationFillMode: 'both' }}>
             Inventing new realities through curiosity, code, and cosmic inspiration.
           </p>
         </div>

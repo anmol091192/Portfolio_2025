@@ -94,8 +94,8 @@ const Certifications = () => {
   const getCardsPerSlide = () => {
     // Responsive: 1 card on mobile, 2 on tablet, 3 on desktop
     if (typeof window !== 'undefined') {
-      if (window.innerWidth < 768) return 1; // Mobile
-      if (window.innerWidth < 1280) return 2; // Tablet
+      if (window.innerWidth < 640) return 1; // Mobile (sm breakpoint)
+      if (window.innerWidth < 1024) return 2; // Tablet (lg breakpoint)
     }
     return 3; // Desktop
   };
@@ -115,11 +115,6 @@ const Certifications = () => {
     setCurrentSlide(slideIndex);
   };
 
-  const getCurrentCards = () => {
-    const startIndex = currentSlide * cardsPerSlide;
-    return certifications.slice(startIndex, startIndex + cardsPerSlide);
-  };
-
   // Handle window resize for responsive carousel
   React.useEffect(() => {
     const handleResize = () => {
@@ -137,7 +132,7 @@ const Certifications = () => {
   return (
     <section 
       id="certificates" 
-      className="relative min-h-screen flex flex-col justify-center items-center text-white py-20 px-6 lg:px-12 w-full"
+      className="relative h-screen flex flex-col justify-center items-center text-white py-8 sm:py-12 px-4 sm:px-6 lg:px-12 w-full overflow-hidden"
       style={sectionStyle}
     >
       {/* Background Overlay */}
@@ -145,47 +140,47 @@ const Certifications = () => {
       
       {/* Info Button */}
       <button 
-        className="absolute top-6 right-6 z-20 p-3 bg-gradient-to-r from-space-blue-500/20 to-cosmic-purple-500/20 backdrop-blur-sm rounded-full hover:from-space-blue-500/40 hover:to-cosmic-purple-500/40 transition-all duration-300 border border-white/20 hover:border-white/40 group" 
+        className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 p-2 sm:p-3 bg-gradient-to-r from-space-blue-500/20 to-cosmic-purple-500/20 backdrop-blur-sm rounded-full hover:from-space-blue-500/40 hover:to-cosmic-purple-500/40 transition-all duration-300 border border-white/20 hover:border-white/40 group" 
         onClick={handleInfoClick}
       >
         <img 
           src="https://img.icons8.com/ios-filled/50/ffffff/telescope.png" 
           alt="info" 
-          className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" 
+          className="w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform duration-300" 
         />
       </button>
       
       {/* Content Container */}
       <div className="relative z-10 max-w-7xl mx-auto w-full">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-5xl lg:text-6xl font-bold mx-auto mb-6 text-transparent bg-clip-text bg-gradient-to-r from-space-blue-200 via-white to-cosmic-purple-200">
+        <div className="text-center mb-2 sm:mb-3">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mx-auto mb-1 sm:mb-2 text-transparent bg-clip-text bg-gradient-to-r from-space-blue-200 via-white to-cosmic-purple-200">
             Certificates
           </h1>
-          <div className="w-24 h-1 bg-gradient-to-r from-space-blue-400 to-cosmic-purple-400 mx-auto mb-8 rounded-full"></div>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto mb-8">
+          <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-space-blue-400 to-cosmic-purple-400 mx-auto mb-2 sm:mb-3 rounded-full"></div>
+          <p className="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto mb-2 sm:mb-3 px-4">
             Continuous learning and professional development through industry-recognized certifications
           </p>
           
           {/* Statistics */}
-          <div className="flex justify-center space-x-8 mb-8">
+          <div className="flex justify-center space-x-4 sm:space-x-6 mb-3 sm:mb-4">
             <div className="text-center">
-              <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-space-blue-400 to-cosmic-purple-400">
+              <div className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-space-blue-400 to-cosmic-purple-400">
                 {stats.total}
               </div>
-              <div className="text-sm text-gray-400">Total Certs</div>
+              <div className="text-xs text-gray-400">Total Certs</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400">
+              <div className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400">
                 {stats.active}
               </div>
-              <div className="text-sm text-gray-400">Active</div>
+              <div className="text-xs text-gray-400">Active</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400">
+              <div className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400">
                 {stats.recentlyEarned}
               </div>
-              <div className="text-sm text-gray-400">Recent</div>
+              <div className="text-xs text-gray-400">Recent</div>
             </div>
           </div>
         </div>
@@ -218,18 +213,18 @@ const Certifications = () => {
           )}
 
           {/* Carousel Cards */}
-          <div className="overflow-hidden rounded-xl">
+          <div className="overflow-hidden rounded-xl max-h-96">
             <div 
-              className={`flex transition-transform duration-500 ease-in-out gap-6 lg:gap-8`}
+              className={`flex transition-transform duration-500 ease-in-out gap-4 lg:gap-6 h-96`}
               style={{ transform: `translateX(-${currentSlide * 100}%)` }}
             >
               {Array.from({ length: totalSlides }, (_, slideIndex) => (
                 <div 
                   key={slideIndex} 
-                  className={`flex-none w-full grid gap-6 lg:gap-8 ${
+                  className={`flex-none w-full grid gap-4 lg:gap-6 h-full ${
                     cardsPerSlide === 1 ? 'grid-cols-1' : 
-                    cardsPerSlide === 2 ? 'grid-cols-1 md:grid-cols-2' : 
-                    'grid-cols-1 md:grid-cols-2 xl:grid-cols-3'
+                    cardsPerSlide === 2 ? 'grid-cols-1 sm:grid-cols-2' : 
+                    'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
                   }`}
                 >
                   {certifications
@@ -264,12 +259,12 @@ const Certifications = () => {
 
           {/* Carousel Indicators */}
           {totalSlides > 1 && (
-            <div className="flex justify-center mt-8 space-x-2">
+            <div className="flex justify-center mt-2 space-x-2">
               {Array.from({ length: totalSlides }, (_, index) => (
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
                     index === currentSlide
                       ? 'bg-gradient-to-r from-space-blue-400 to-cosmic-purple-400 scale-125'
                       : 'bg-white/30 hover:bg-white/50'
@@ -283,30 +278,14 @@ const Certifications = () => {
 
         {/* Progress Indicator */}
         {totalSlides > 1 && (
-          <div className="text-center mt-6">
-            <span className="text-sm text-gray-400">
+          <div className="text-center mt-1">
+            <span className="text-xs text-gray-400">
               {currentSlide + 1} of {totalSlides}
             </span>
           </div>
         )}
 
-        {/* Call to Action */}
-        <div className="text-center mt-12">
-          <p className="text-gray-400 text-sm mb-4">
-            View all certifications and credentials on LinkedIn
-          </p>
-          <a
-            href="https://www.linkedin.com/in/anmol09k/details/certifications/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-medium rounded-lg hover:from-blue-500 hover:to-blue-400 transition-all duration-300"
-          >
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-            LinkedIn Profile
-          </a>
-        </div>
+
       </div>
       
       {/* Overlay Component */}
