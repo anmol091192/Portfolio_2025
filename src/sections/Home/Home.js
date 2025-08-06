@@ -43,9 +43,13 @@ const Home = () => {
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center mb-4 sm:mb-6 text-transparent bg-clip-text bg-gradient-to-r from-space-blue-200 via-white to-cosmic-purple-200">
           {homeData.title}
         </h1>
-        <p className="text-lg sm:text-xl md:text-2xl text-center text-gray-300 max-w-4xl leading-relaxed">
-          {homeData.subtitle}
-        </p>
+        <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-space-blue-400 to-cosmic-purple-400 mx-auto mb-6 sm:mb-8 rounded-full"></div>
+          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-6 sm:mb-8 font-light text-gray-300 animate-fade-in-up px-4" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
+            {homeData.subtitle}
+          </h2>
+          <p className="text-base sm:text-lg lg:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed animate-fade-in-up px-4" style={{ animationDelay: '0.4s', animationFillMode: 'both' }}>
+            {homeData.tagLine}
+          </p>
       </div>
 
       {/* Overlay Component */}
