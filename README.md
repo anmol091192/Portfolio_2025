@@ -2,6 +2,12 @@
 
 A modern, space-themed portfolio website showcasing Full Stack Development & AI expertise. Built with React and Tailwind CSS, featuring beautiful JWST imagery, parallax scrolling, and professional certifications.
 
+## 🌐 Live Demo
+
+**🚀 [View Live Portfolio](https://anmolkhandekar.netlify.app/)**
+
+Experience the full portfolio with interactive parallax effects, space-themed animations, and comprehensive project showcase.
+
 ## ✨ Features
 
 ### 🎨 **Visual & Design**

@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://anmolkhandekar.dev/sitemap.xml
+Sitemap: https://anmolkhandekar.netlify.app/sitemap.xml

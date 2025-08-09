@@ -2,13 +2,13 @@
   "name": "anmol-khandekar-portfolio",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://anmolkhandekar.dev",
+  "homepage": "https://anmolkhandekar.netlify.app",
   "description": "Professional portfolio of Anmol Khandekar - Full Stack Developer & AI Specialist",
   "keywords": ["portfolio", "react", "full-stack", "ai", "developer", "anmol-khandekar"],
   "author": {
     "name": "Anmol Khandekar",
     "email": "anmolk0992@gmail.com",
-    "url": "https://anmolkhandekar.dev"
+    "url": "https://anmolkhandekar.netlify.app"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
