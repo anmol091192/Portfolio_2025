@@ -25,12 +25,14 @@ function App() {
       const docHeight = document.documentElement.scrollHeight;
       const windowHeight = window.innerHeight;
       
-      console.log('Page dimensions:', { 
-        docHeight, 
-        windowHeight, 
-        sectionsCount: document.querySelectorAll('section').length,
-        homeExists: !!home 
-      });
+      // Page dimensions for debugging
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Page dimensions:', { 
+          scrollHeight: document.documentElement.scrollHeight,
+          clientHeight: document.documentElement.clientHeight,
+          scrollY: window.scrollY
+        });
+      }
       
       // Always scroll to home section, regardless of page scrollability
       if (home) {
@@ -41,7 +43,9 @@ function App() {
         
         setTimeout(() => {
           const scrollY = window.scrollY;
-          console.log('After scrollIntoView - scrollY:', scrollY);
+          if (process.env.NODE_ENV === 'development') {
+            console.log('After scrollIntoView - scrollY:', scrollY);
+          }
           
           if (docHeight > windowHeight) {
             // Page is scrollable
@@ -49,7 +53,9 @@ function App() {
             setAtBottom(scrollY + windowHeight >= docHeight - 10);
           } else {
             // Page fits in viewport - we're starting at home, so we're at bottom
-            console.log('Page fits in viewport - starting at home (bottom)');
+            if (process.env.NODE_ENV === 'development') {
+              console.log('Page fits in viewport - starting at home (bottom)');
+            }
             setAtTop(false);
             setAtBottom(true);
           }
@@ -105,16 +111,13 @@ function App() {
       
       // Debug scroll state changes
       if (isAtTop !== atTop || isAtBottom !== atBottom) {
-        console.log('Scroll state change:', { 
-          scrollY, 
-          windowHeight, 
-          docHeight, 
-          isAtTop, 
-          isAtBottom,
-          previousAtTop: atTop,
-          previousAtBottom: atBottom,
-          currentSectionIndex: sessionStorage.getItem('currentSectionIndex')
-        });
+        if (process.env.NODE_ENV === 'development') {
+          console.log('Scroll state change:', { 
+            scrollY: window.scrollY,
+            atTop,
+            atBottom
+          });
+        }
       }
       
       setAtTop(isAtTop);
@@ -134,17 +137,18 @@ function App() {
     const windowHeight = window.innerHeight;
     const docHeight = document.documentElement.scrollHeight;
     
-    console.log('Rocket clicked - Page info:', { 
-      currentScroll, 
-      windowHeight, 
-      docHeight, 
-      sectionsCount: sections.length,
-      isScrollable: docHeight > windowHeight 
-    });
-    
-    // If page is not scrollable (fits in viewport), cycle through sections by index
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Rocket clicked - Page info:', { 
+        scrollHeight: document.documentElement.scrollHeight,
+        clientHeight: document.documentElement.clientHeight,
+        scrollY: window.scrollY,
+        isScrollable: document.documentElement.scrollHeight > document.documentElement.clientHeight
+      });
+    }    // If page is not scrollable (fits in viewport), cycle through sections by index
     if (docHeight <= windowHeight) {
-      console.log('Page not scrollable - using section cycling');
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Page not scrollable - using section cycling');
+      }
       
       // Use a simple counter to cycle through sections
       const sectionOrder = ['home', 'about', 'experience', 'projects', 'certificates', 'contact'];
@@ -157,7 +161,9 @@ function App() {
       sessionStorage.setItem('currentSectionIndex', currentIndex.toString());
       
       const targetSection = document.getElementById(sectionOrder[currentIndex]);
-      console.log('Cycling to section:', sectionOrder[currentIndex]);
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Cycling to section:', sectionOrder[currentIndex]);
+      }
       
       if (targetSection) {
         targetSection.scrollIntoView({ behavior: 'smooth' });
@@ -193,8 +199,10 @@ function App() {
       }
     }
 
-    console.log('Current section:', orderedSections[currentSectionIndex]?.id);
-    console.log('Position states - atTop:', atTop, 'atBottom:', atBottom);
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Current section:', orderedSections[currentSectionIndex]?.id);
+      console.log('Position states - atTop:', atTop, 'atBottom:', atBottom);
+    }
 
     let nextSectionIndex;
     
@@ -207,7 +215,9 @@ function App() {
     }
     
     const nextSection = orderedSections[nextSectionIndex];
-    console.log('Scrolling to:', nextSection?.id);
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Scrolling to:', nextSection?.id);
+    }
     
     if (nextSection) {
       nextSection.scrollIntoView({ behavior: 'smooth' });

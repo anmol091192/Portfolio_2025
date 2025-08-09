@@ -1,7 +1,15 @@
 {
-  "name": "bottom-up-portfolio",
-  "version": "0.1.0",
+  "name": "anmol-khandekar-portfolio",
+  "version": "1.0.0",
   "private": true,
+  "homepage": "https://anmolkhandekar.dev",
+  "description": "Professional portfolio of Anmol Khandekar - Full Stack Developer & AI Specialist",
+  "keywords": ["portfolio", "react", "full-stack", "ai", "developer", "anmol-khandekar"],
+  "author": {
+    "name": "Anmol Khandekar",
+    "email": "anmolk0992@gmail.com",
+    "url": "https://anmolkhandekar.dev"
+  },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@testing-library/dom": "^10.4.1",

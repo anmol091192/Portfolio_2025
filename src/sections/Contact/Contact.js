@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import ImageInfoOverlay from '../../components/ImageInfoOverlay/ImageInfoOverlay';
 import { getSectionData } from '../../data/usePortfolioData';
@@ -6,6 +6,8 @@ import { getSectionData } from '../../data/usePortfolioData';
 
 const Contact = () => {
   const [showOverlay, setShowOverlay] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  const sectionRef = useRef(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -18,6 +20,29 @@ const Contact = () => {
 
   const handleInfoClick = () => setShowOverlay(true);
   const handleClose = () => setShowOverlay(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        const sectionTop = rect.top;
+        const sectionHeight = rect.height;
+        const windowHeight = window.innerHeight;
+        
+        // Calculate parallax effect only when section is visible
+        if (sectionTop < windowHeight && sectionTop + sectionHeight > 0) {
+          // Calculate the scroll progress through this section
+          const scrollProgress = (windowHeight - sectionTop) / (windowHeight + sectionHeight);
+          setScrollY(scrollProgress * 100); // Adjust multiplier for effect intensity
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -50,16 +75,15 @@ const Contact = () => {
       submitButton.disabled = true;
       
       // EmailJS Configuration
-      // Replace these with your actual EmailJS credentials
-      const SERVICE_ID = 'YOUR_SERVICE_ID';
-      const TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  
-      const PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
-      
+      const SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+      const TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+      const PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+
       // Prepare template parameters for EmailJS
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
-        to_email: 'anmol09k@gmail.com',
+        to_email: 'anmolk0992@gmail.com',
         subject: formData.subject,
         message: formData.message,
         reply_to: formData.email
@@ -90,12 +114,12 @@ const Contact = () => {
         `Subject: ${formData.subject}\n\n` +
         `Message:\n${formData.message}`
       );
-      const mailtoLink = `mailto:anmol09k@gmail.com?subject=${subject}&body=${body}`;
+      const mailtoLink = `mailto:anmolk0992@gmail.com?subject=${subject}&body=${body}`;
       
       if (window.confirm('Unable to send email automatically. Would you like to open your email client instead?')) {
         window.location.href = mailtoLink;
       } else {
-        alert('Please try again later or contact me directly at anmol09k@gmail.com');
+        alert('Please try again later or contact me directly at anmolk0992@gmail.com');
       }
       
     } finally {
@@ -112,11 +136,13 @@ const Contact = () => {
     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${contactData.backgroundImage}')`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat'
+    backgroundRepeat: 'no-repeat',
+    backgroundAttachment: 'fixed' // This makes the background stay relatively fixed
   };
 
   return (
     <section 
+      ref={sectionRef}
       id="contact" 
       className="relative h-screen flex flex-col justify-center items-center text-white py-8 sm:py-12 px-4 sm:px-6 lg:px-12 w-full overflow-hidden"
       style={sectionStyle}
@@ -128,6 +154,9 @@ const Contact = () => {
       <button 
         className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 p-2 sm:p-3 bg-gradient-to-r from-space-blue-500/20 to-cosmic-purple-500/20 backdrop-blur-sm rounded-full hover:from-space-blue-500/40 hover:to-cosmic-purple-500/40 transition-all duration-300 border border-white/20 hover:border-white/40 group" 
         onClick={handleInfoClick}
+        style={{
+          transform: `translateY(${scrollY * 0.3}px)` // Subtle movement for button
+        }}
       >
         <img 
           src="https://img.icons8.com/ios-filled/50/ffffff/telescope.png" 
@@ -137,9 +166,14 @@ const Contact = () => {
       </button>
 
       {/* Content Container */}
-      <div className="relative z-10 max-w-7xl mx-auto w-full h-full flex flex-col">
+      <div 
+        className="relative z-10 max-w-7xl mx-auto w-full h-full flex flex-col"
+        style={{
+          transform: `translateY(${scrollY * 0.5}px)` // Content moves faster than background
+        }}
+      >
         {/* Section Header */}
-        <div className="text-center mb-4 sm:mb-6">
+        <div className="text-center mx-auto mb-4 sm:mb-6">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2 sm:mb-3 text-transparent bg-clip-text bg-gradient-to-r from-space-blue-200 via-white to-cosmic-purple-200">
             {contactData.title}
           </h1>
@@ -164,8 +198,8 @@ const Contact = () => {
                 </div>
                 <h3 className="text-lg font-semibold text-white">Email</h3>
               </div>
-              <a href="mailto:anmol09k@gmail.com" className="text-space-blue-300 hover:text-white transition-colors text-sm break-all">
-                anmol09k@gmail.com
+              <a href="mailto:anmolk0992@gmail.com" className="text-space-blue-300 hover:text-white transition-colors text-sm break-all">
+                anmolk0992@gmail.com
               </a>
             </div>
 
@@ -187,6 +221,33 @@ const Contact = () => {
                   GitHub
                 </a>
               </div>
+            </div>
+
+            {/* Resume Download */}
+            <div className="bg-gradient-to-br from-space-blue-900/30 to-cosmic-purple-900/30 backdrop-blur-sm rounded-xl p-4 sm:p-5 border border-white/20 hover:border-white/40 transition-all duration-300">
+              <div className="flex items-center space-x-3 mb-3">
+                <div className="w-8 h-8 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center">
+                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-white">Resume</h3>
+              </div>
+              <button 
+                onClick={() => {
+                  // Create a download link for the resume
+                  const link = document.createElement('a');
+                  link.href = '/assets/resume/Anmol_Khandekar_Resume.pdf';
+                  link.download = 'Anmol_Khandekar_Resume.pdf';
+                  link.click();
+                }}
+                className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white py-2 px-3 rounded-lg transition-all duration-300 text-center text-sm font-medium flex items-center justify-center space-x-2 group"
+              >
+                <svg className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+                <span>Download Resume</span>
+              </button>
             </div>
           </div>
 
@@ -246,9 +307,13 @@ const Contact = () => {
               
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-space-blue-600 to-cosmic-purple-600 hover:from-space-blue-500 hover:to-cosmic-purple-500 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-[1.02] text-sm sm:text-base"
+                className="w-full bg-gradient-to-r from-space-blue-600 to-cosmic-purple-600 hover:from-space-blue-500 hover:to-cosmic-purple-500 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-[1.02] text-sm sm:text-base flex items-center justify-center space-x-2 group"
               >
-                Send Message
+                <svg className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                </svg>
+                <span>Send Message</span>
               </button>
             </form>
           </div>

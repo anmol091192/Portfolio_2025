@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ImageInfoOverlay from '../../components/ImageInfoOverlay/ImageInfoOverlay';
 import CertificationCard from '../../components/CertificationCard/CertificationCard';
 import { getSectionData, getCertificateStats } from '../../data/usePortfolioData';
@@ -6,17 +6,43 @@ import { getSectionData, getCertificateStats } from '../../data/usePortfolioData
 const Certifications = () => {
   const [showOverlay, setShowOverlay] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [scrollY, setScrollY] = useState(0);
+  const sectionRef = useRef(null);
   const certificatesData = getSectionData('certificates');
   const stats = getCertificateStats();
   
   const handleInfoClick = () => setShowOverlay(true);
   const handleClose = () => setShowOverlay(false);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        const sectionTop = rect.top;
+        const sectionHeight = rect.height;
+        const windowHeight = window.innerHeight;
+        
+        // Calculate parallax effect only when section is visible
+        if (sectionTop < windowHeight && sectionTop + sectionHeight > 0) {
+          // Calculate the scroll progress through this section
+          const scrollProgress = (windowHeight - sectionTop) / (windowHeight + sectionHeight);
+          setScrollY(scrollProgress * 100); // Adjust multiplier for effect intensity
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const sectionStyle = {
     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${certificatesData.backgroundImage}')`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat'
+    backgroundRepeat: 'no-repeat',
+    backgroundAttachment: 'fixed' // This makes the background stay relatively fixed
   };
 
   const certifications = certificatesData.certifications || [];
@@ -62,6 +88,7 @@ const Certifications = () => {
 
   return (
     <section 
+      ref={sectionRef}
       id="certificates" 
       className="relative h-screen flex flex-col justify-center items-center text-white py-8 sm:py-12 px-4 sm:px-6 lg:px-12 w-full overflow-hidden"
       style={sectionStyle}
@@ -73,6 +100,9 @@ const Certifications = () => {
       <button 
         className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 p-2 sm:p-3 bg-gradient-to-r from-space-blue-500/20 to-cosmic-purple-500/20 backdrop-blur-sm rounded-full hover:from-space-blue-500/40 hover:to-cosmic-purple-500/40 transition-all duration-300 border border-white/20 hover:border-white/40 group" 
         onClick={handleInfoClick}
+        style={{
+          transform: `translateY(${scrollY * 0.3}px)` // Subtle movement for button
+        }}
       >
         <img 
           src="https://img.icons8.com/ios-filled/50/ffffff/telescope.png" 
@@ -82,7 +112,12 @@ const Certifications = () => {
       </button>
       
       {/* Content Container */}
-      <div className="relative z-10 max-w-7xl mx-auto w-full">
+      <div 
+        className="relative z-10 max-w-7xl mx-auto w-full"
+        style={{
+          transform: `translateY(${scrollY * 0.5}px)` // Content moves faster than background
+        }}
+      >
         {/* Section Header */}
         <div className="text-center mb-2 sm:mb-3">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mx-auto mb-1 sm:mb-2 text-transparent bg-clip-text bg-gradient-to-r from-space-blue-200 via-white to-cosmic-purple-200">

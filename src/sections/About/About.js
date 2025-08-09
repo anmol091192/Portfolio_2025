@@ -1,31 +1,69 @@
 // File: src/sections/About/About.js
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ImageInfoOverlay from '../../components/ImageInfoOverlay/ImageInfoOverlay';
 import { getSectionData, getPersonalInfo } from '../../data/usePortfolioData';
 
 const About = () => {
   const [showOverlay, setShowOverlay] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  const sectionRef = useRef(null);
   const aboutData = getSectionData('about');
   const personalInfo = getPersonalInfo();
   
   const handleInfoClick = () => setShowOverlay(true);
   const handleClose = () => setShowOverlay(false);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        const sectionTop = rect.top;
+        const sectionHeight = rect.height;
+        const windowHeight = window.innerHeight;
+        
+        // Calculate parallax effect only when section is visible
+        if (sectionTop < windowHeight && sectionTop + sectionHeight > 0) {
+          // Calculate the scroll progress through this section
+          const scrollProgress = (windowHeight - sectionTop) / (windowHeight + sectionHeight);
+          setScrollY(scrollProgress * 100); // Adjust multiplier for effect intensity
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <section 
+      ref={sectionRef}
       id="about" 
       className="relative min-h-screen flex justify-center items-center text-white p-4 sm:p-8 lg:p-16 text-center w-full"
       style={{
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${aboutData.backgroundImage}')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed' // This makes the background stay relatively fixed
       }}
     >
-      <button className="info-button absolute top-4 right-4 z-10 p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-all duration-300" onClick={handleInfoClick}>
+      <button 
+        className="info-button absolute top-4 right-4 z-10 p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-all duration-300" 
+        onClick={handleInfoClick}
+        style={{
+          transform: `translateY(${scrollY * 0.3}px)` // Subtle movement for button
+        }}
+      >
         <img src="https://img.icons8.com/ios-filled/50/ffffff/telescope.png" alt="info" className="w-6 h-6" />
       </button>
-      <div className="flex flex-col items-center justify-center text-center w-full max-w-3xl mx-auto p-6 sm:p-8 lg:p-10 bg-black bg-opacity-60 rounded-xl shadow-2xl">
+      <div 
+        className="flex flex-col items-center justify-center text-center w-full max-w-3xl mx-auto p-6 sm:p-8 lg:p-10 bg-black bg-opacity-60 rounded-xl shadow-2xl"
+        style={{
+          transform: `translateY(${scrollY * 0.5}px)` // Content moves faster than background
+        }}
+      >
         <img
           src={personalInfo.profileImage}
           alt={personalInfo.name}
