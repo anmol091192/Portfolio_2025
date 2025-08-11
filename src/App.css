@@ -11,11 +11,27 @@ html, body {
   /* Enhanced scroll behavior for mobile */
   -webkit-overflow-scrolling: touch;
   scroll-padding-top: 0;
+  
+  /* Hide scrollbar for all browsers */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+/* Hide scrollbar for WebKit browsers (Chrome, Safari, Edge) */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
 }
 
 /* Ensure smooth scrolling on all elements */
 * {
   scroll-behavior: smooth;
+  /* Hide scrollbar for all elements */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
 }
 
 /* iOS-specific smooth scrolling improvements */
@@ -42,6 +58,16 @@ html, body {
   html, body {
     scroll-behavior: auto !important;
   }
+}
+
+/* Ensure page starts at the top and doesn't show unwanted content */
+html {
+  scroll-behavior: auto; /* Disable smooth scrolling during initial load */
+}
+
+body {
+  /* Ensure the page starts at the correct position */
+  overflow-anchor: none; /* Prevent scroll anchoring that might interfere */
 }
 
 section {

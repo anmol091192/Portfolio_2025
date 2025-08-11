@@ -39,10 +39,14 @@ function App() {
       
       // Always scroll to home section, regardless of page scrollability
       if (home) {
+        // Scroll immediately to prevent any flash of other sections
         home.scrollIntoView({ behavior: 'instant', block: 'start' });
         
         // Initialize the section index to home (5 in the new order) for non-scrollable pages
         sessionStorage.setItem('currentSectionIndex', '5');
+        
+        // Force scroll position to ensure we're at the right place
+        window.scrollTo(0, home.offsetTop);
         
         setTimeout(() => {
           if (docHeight > windowHeight) {
@@ -51,14 +55,18 @@ function App() {
             // Page fits in viewport - we're starting at home
           }
           
+          // Re-enable smooth scrolling after initial positioning
+          document.documentElement.style.scrollBehavior = 'smooth';
+          
           // Force a scroll event to ensure proper section detection
           window.dispatchEvent(new Event('scroll'));
-        }, 100);
+        }, 50); // Reduced delay from 100ms to 50ms
       }
     };
 
-    // Try multiple times to ensure DOM is ready
-    setTimeout(scrollToHome, 300);
+    // Call immediately and also with a small delay to ensure it works
+    scrollToHome();
+    setTimeout(scrollToHome, 100); // Backup call with shorter delay
 
     const handleScroll = () => {
       const scrollY = window.scrollY;
