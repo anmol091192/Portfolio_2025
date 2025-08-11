@@ -2,11 +2,11 @@
 
 A modern, space-themed portfolio website showcasing Full Stack Development & AI expertise. Built with React and Tailwind CSS, featuring beautiful JWST imagery, parallax scrolling, and professional certifications.
 
-## 🌐 Live Demo
+## 🌐 Live Portfolio
 
-**🚀 [View Live Portfolio](https://anmolkhandekar.netlify.app/)**
+**🚀 [anmolkhandekar.netlify.app](https://anmolkhandekar.netlify.app/)**
 
-Experience the full portfolio with interactive parallax effects, space-themed animations, and comprehensive project showcase.
+Experience the full portfolio with interactive parallax effects, space-themed animations, mobile-optimized touch interactions, and comprehensive project showcase.
 
 ## ✨ Features
 
@@ -21,7 +21,8 @@ Experience the full portfolio with interactive parallax effects, space-themed an
 - **Collapsible Navigation**: Toggle-able left sidebar navigation with smooth animations
 - **Rocket Navigation**: Unique bottom-right rocket for section scrolling
 - **ScrollSpy**: Active section highlighting with smooth transitions
-- **Mobile-First**: Touch-friendly interface with responsive breakpoints
+- **Mobile-First**: Touch-friendly interface with swipe gestures and responsive breakpoints
+- **Touch Optimization**: Carousel swipe support and enhanced mobile interactions
 
 ### 📊 **Professional Content**
 - **Real Experience Data**: Authentic work history from AWS, Linqia, and Egen Solutions
@@ -49,7 +50,9 @@ Experience the full portfolio with interactive parallax effects, space-themed an
 - **React Scripts**: Development and build tooling
 
 ### **Assets & Media**
-- **NASA JWST Images**: Official high-resolution space imagery
+- **NASA JWST Images**: Official high-resolution space imagery (locally optimized)
+- **Custom Rocket Favicon**: Space-themed black rocket icon for browser tabs
+- **Image Preloading**: Optimized loading system for background images
 - **Icons8**: Professional icon library
 - **PDF.js Support**: Resume and certificate viewing
 - **Responsive Images**: Optimized loading and performance
@@ -81,9 +84,10 @@ public/
 ├── assets/
 │   ├── certificates/         # PDF certificates collection
 │   ├── resume/               # Professional resume PDF
-│   └── images/               # JWST background imagery
+│   └── images/               # JWST background imagery (locally stored)
+├── rocket favicon files     # Custom black rocket icons (multiple sizes)
 ├── sitemap.xml               # SEO sitemap
-└── manifest.json             # PWA configuration
+└── manifest.json             # PWA configuration with rocket icons
 ```
 
 ## 🚀 Getting Started
@@ -205,7 +209,8 @@ High-quality JWST imagery featuring:
 
 ### 5. **🎓 Certificates**
 - Purdue University AI Specialization certificates
-- Interactive carousel with PDF downloads
+- Interactive carousel with touch/swipe support
+- PDF downloads and verification links
 - Verification links and credential details
 - Skills breakdown for each certification
 
@@ -219,67 +224,35 @@ High-quality JWST imagery featuring:
 
 ### **Multi-Modal Navigation**
 - **Collapsible Sidebar**: Left navigation with show/hide toggle
-- **Rocket Navigation**: Bottom-right rocket for sequential scrolling  
+- **Rocket Navigation**: Bottom-right black rocket for sequential scrolling  
 - **ScrollSpy**: Active section highlighting with smooth indicators
+- **Touch Gestures**: Swipe support for mobile carousel navigation
 - **Direct Links**: Section-specific URLs for bookmarking
 
 ### **User Experience**
 - **Smooth Transitions**: Hardware-accelerated CSS animations
-- **Mobile Optimization**: Touch-friendly interface and gestures
+- **Mobile Optimization**: Touch-friendly interface with swipe gestures
+- **Enhanced Mobile Scroll**: Simplified section navigation for mobile devices
 - **Keyboard Accessible**: Full keyboard navigation support
 - **Visual Feedback**: Hover states and active indicators
 
 ### **Performance Features**  
+- **Image Preloading**: Background images preloaded for instant transitions
 - **Parallax Optimization**: Only calculates when sections are visible
 - **Efficient Scrolling**: Throttled scroll event handling
 - **Memory Management**: Proper cleanup of event listeners
 - **Cross-Browser**: Tested on Chrome, Firefox, Safari, Edge
+- **Local Assets**: All background images stored locally for reliability
 
-## 🚀 Deployment
+## 🎯 Production Features
 
-### **Production Ready**
-The portfolio is fully optimized for production deployment with:
+### **Complete & Optimized**
+The portfolio is production-ready with:
 - **SEO Optimization**: Meta tags, sitemap, Open Graph, Twitter Cards
-- **Performance**: ~81KB total bundle size (gzipped)
-- **PWA Support**: Installable web app with manifest
-- **Security**: Environment variables and clean production build
-
-### **Deployment Platforms**
-
-#### **🌟 Recommended: Netlify**
-1. Connect GitHub repository to Netlify
-2. Build command: `npm run build`
-3. Publish directory: `build`
-4. Add environment variables for EmailJS
-
-#### **⚡ Vercel** 
-1. Import repository from GitHub
-2. Auto-detection of React build settings
-3. Environment variables in dashboard
-4. Automatic deployments on push
-
-#### **🔧 Manual Deployment**
-```bash
-npm run build
-# Deploy the 'build' folder to any static hosting service
-```
-
-#### **🆓 GitHub Pages**
-```bash
-npm install --save-dev gh-pages
-npm run build
-npm run deploy
-```
-
-### **Environment Variables**
-For full contact form functionality, set up EmailJS:
-```env
-REACT_APP_EMAILJS_SERVICE_ID=your_service_id
-REACT_APP_EMAILJS_TEMPLATE_ID=your_template_id  
-REACT_APP_EMAILJS_PUBLIC_KEY=your_public_key
-```
-
-See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.
+- **Performance**: ~76KB total bundle size (gzipped)
+- **PWA Support**: Installable web app with custom rocket favicon
+- **Security**: Clean production build with optimized assets
+- **Mobile Excellence**: Touch-optimized interactions and responsive design
 
 ## 🎯 Key Highlights
 
@@ -291,15 +264,18 @@ See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.
 
 ### **Technical Excellence**
 - **Production Quality**: Enterprise-level code standards and best practices
-- **Performance Optimized**: Fast loading times and smooth animations  
+- **Performance Optimized**: Fast loading with image preloading and optimized bundles
 - **SEO Ready**: Complete meta tags, sitemap, and social media integration
 - **Accessible Design**: WCAG compliant with keyboard and screen reader support
+- **Mobile Mastery**: Advanced touch interactions and responsive design
 
 ### **Unique Features**
 - **Parallax Scrolling**: Immersive depth effects throughout
-- **Interactive Certificates**: PDF viewing with verification links
+- **Interactive Certificates**: PDF viewing with verification links and touch navigation
 - **Functional Contact**: Real email integration with fallback systems
 - **Professional Downloads**: Resume and certificates with one-click access
+- **Custom Favicon**: Space-themed black rocket icon for professional branding
+- **Touch-Optimized**: Advanced mobile interactions with swipe gestures
 
 ## 🙏 Acknowledgments
 
