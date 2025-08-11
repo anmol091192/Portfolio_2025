@@ -74,6 +74,9 @@ function App() {
             setAtTop(false);
             setAtBottom(true);
           }
+          
+          // Force a scroll event to ensure proper section detection
+          window.dispatchEvent(new Event('scroll'));
         }, 100);
       }
     };
@@ -307,6 +310,11 @@ function App() {
       // Get or initialize current section index from sessionStorage
       let currentIndex = parseInt(sessionStorage.getItem('currentSectionIndex') || '5'); // Default to home
       
+      // Validate currentIndex to ensure it's within bounds
+      if (currentIndex < 0 || currentIndex >= sectionOrder.length) {
+        currentIndex = 5; // Reset to home if invalid
+      }
+      
       // Move to next section
       currentIndex = (currentIndex + 1) % sectionOrder.length;
       sessionStorage.setItem('currentSectionIndex', currentIndex.toString());
@@ -381,9 +389,18 @@ function App() {
       }
     }
 
+    // If no section was detected or we're at the very start, default to home section
+    if (currentSectionIndex === -1 || maxVisibleArea === 0) {
+      currentSectionIndex = 0; // Start from home (first in ordered sections)
+      if (process.env.NODE_ENV === 'development') {
+        console.log('No section detected, defaulting to home section');
+      }
+    }
+
     if (process.env.NODE_ENV === 'development') {
       console.log('Current section:', orderedSections[currentSectionIndex]?.id);
       console.log('Position states - atTop:', atTop, 'atBottom:', atBottom);
+      console.log('Max visible area:', maxVisibleArea);
     }
 
     let nextSectionIndex;
