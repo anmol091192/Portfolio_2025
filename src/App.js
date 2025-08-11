@@ -108,21 +108,24 @@ function App() {
   }, []);
 
   const scrollBetweenSections = (event) => {
-    // Prevent default touch behavior on mobile
-    if (event && event.preventDefault) {
-      event.preventDefault();
-    }
+    console.log('🚀 Rocket clicked! Event:', event?.type || 'unknown');
+    
+    // Don't try to preventDefault on passive events - just let them through
+    // React's click events work fine on mobile with touchAction: 'manipulation'
     
     // Prevent rapid clicks - wait for current scroll to finish
     if (isScrolling) {
+      console.log('⏳ Already scrolling, ignoring click');
       return;
     }
     
+    console.log('✅ Starting scroll sequence');
     setIsScrolling(true);
     
     // Safety timeout to prevent isScrolling from getting stuck
     // eslint-disable-next-line no-unused-vars
     const safetyTimeout = setTimeout(() => {
+      console.log('🆘 Safety timeout triggered - resetting scroll state');
       setIsScrolling(false);
     }, 2000); // Simple 2 second timeout
     
@@ -130,6 +133,18 @@ function App() {
     const currentScroll = window.scrollY;
     const windowHeight = window.innerHeight;
     const docHeight = document.documentElement.scrollHeight;
+    
+    console.log('📊 Page metrics:', {
+      currentScroll,
+      windowHeight,
+      docHeight,
+      sectionsFound: sections.length,
+      isScrolling,
+      bodyScrollHeight: document.body.scrollHeight,
+      htmlScrollHeight: document.documentElement.scrollHeight,
+      windowInnerHeight: window.innerHeight,
+      documentElementClientHeight: document.documentElement.clientHeight
+    });
     
     // Enhanced mobile detection
     const isMobileWidth = window.innerWidth <= 768;
@@ -139,13 +154,17 @@ function App() {
     
     // Enhanced smooth scrolling function for mobile compatibility
     const smoothScrollToSection = (targetSection) => {
+      console.log('🎯 smoothScrollToSection called with:', targetSection?.id || 'null');
+      
       if (!targetSection) {
+        console.error('❌ No target section provided');
         setIsScrolling(false);
         return;
       }
       
       // Add fallback for edge cases
       const fallbackScroll = () => {
+        console.log('🆘 Using fallback scroll');
         clearTimeout(safetyTimeout);
         targetSection.scrollIntoView({ 
           behavior: isMobile ? 'auto' : 'smooth', 
@@ -156,12 +175,20 @@ function App() {
       };
       
       if (isMobile) {
+        console.log('📱 Using mobile scroll logic');
         // For mobile: Use a more gentle approach with custom easing
         const startY = window.scrollY;
         const targetY = targetSection.offsetTop;
         const distance = targetY - startY;
         const duration = Math.min(1200, Math.max(600, Math.abs(distance) / 1.5)); // Faster duration for better UX
         const startTime = performance.now();
+        
+        console.log('📱 Mobile scroll params:', {
+          startY,
+          targetY,
+          distance,
+          duration
+        });
         
         // Temporarily disable CSS smooth scrolling to prevent conflicts
         document.documentElement.style.scrollBehavior = 'auto';
@@ -200,9 +227,11 @@ function App() {
         try {
           requestAnimationFrame(scroll);
         } catch (error) {
+          console.error('❌ Error in mobile scroll animation:', error);
           fallbackScroll();
         }
       } else {
+        console.log('🖥️ Using desktop scroll logic');
         // For desktop: Use native smooth scrolling with fallback
         try {
           targetSection.scrollIntoView({ 
@@ -211,10 +240,12 @@ function App() {
             inline: 'nearest'
           });
           
+          console.log('🖥️ Desktop scroll initiated, resetting state in 1000ms');
           // Reset scrolling state after a reasonable delay for desktop
           clearTimeout(safetyTimeout);
           setTimeout(() => setIsScrolling(false), 1000);
         } catch (error) {
+          console.error('❌ Error in desktop scroll:', error);
           fallbackScroll();
         }
       }
@@ -225,7 +256,16 @@ function App() {
     const heightDifference = docHeight - windowHeight;
     const isEffectivelyNonScrollable = heightDifference <= 50; // Allow for small browser UI differences
     
+    console.log('📏 Scrollability check:', {
+      heightDifference,
+      isEffectivelyNonScrollable,
+      condition1: docHeight <= windowHeight,
+      condition2: isEffectivelyNonScrollable
+    });
+    
     if (docHeight <= windowHeight || isEffectivelyNonScrollable) {
+      console.log('🔄 Using section cycling mode (non-scrollable page)');
+      
       // Use a simple counter to cycle through sections
       // IMPORTANT: Use same order as navbar for consistency
       const sectionOrder = ['home', 'about', 'experience', 'projects', 'certificates', 'contact'];
@@ -233,18 +273,37 @@ function App() {
       // Get or initialize current section index from sessionStorage
       let currentIndex = parseInt(sessionStorage.getItem('currentSectionIndex') || '5'); // Default to home
       
+      console.log('🎯 Current section state:', {
+        currentIndexFromStorage: sessionStorage.getItem('currentSectionIndex'),
+        parsedCurrentIndex: currentIndex,
+        sectionOrder
+      });
+      
       // Validate currentIndex to ensure it's within bounds
       if (currentIndex < 0 || currentIndex >= sectionOrder.length) {
+        console.log('⚠️ Invalid currentIndex, resetting to home');
         currentIndex = 5; // Reset to home if invalid
       }
       
       // Move to next section
+      const oldIndex = currentIndex;
       currentIndex = (currentIndex + 1) % sectionOrder.length;
       sessionStorage.setItem('currentSectionIndex', currentIndex.toString());
+      
+      console.log('➡️ Section transition:', {
+        from: `${oldIndex} (${sectionOrder[oldIndex]})`,
+        to: `${currentIndex} (${sectionOrder[currentIndex]})`
+      });
       
       const targetSection = document.getElementById(sectionOrder[currentIndex]);
       
       if (targetSection) {
+        console.log('✅ Target section found:', {
+          id: targetSection.id,
+          offsetTop: targetSection.offsetTop,
+          offsetHeight: targetSection.offsetHeight
+        });
+        
         // Simple mobile scroll - just use scrollIntoView
         clearTimeout(safetyTimeout);
         
@@ -255,12 +314,15 @@ function App() {
             inline: 'nearest'
           });
           
+          console.log('🎯 Scroll completed, resetting state in 300ms');
           setTimeout(() => setIsScrolling(false), 300);
           
         } catch (error) {
+          console.error('❌ Error during scrollIntoView:', error);
           setIsScrolling(false);
         }
       } else {
+        console.error('❌ Target section not found:', sectionOrder[currentIndex]);
         clearTimeout(safetyTimeout);
         setIsScrolling(false);
       }
@@ -268,6 +330,7 @@ function App() {
     }
     
     // Original logic for scrollable pages
+    console.log('📜 Using scrollable page mode');
     const sectionOrder = ['home', 'about', 'experience', 'projects', 'certificates', 'contact'];
     
     const orderedSections = sectionOrder.map(id => 
@@ -276,6 +339,8 @@ function App() {
     
     let currentSectionIndex = -1;
     let maxVisibleArea = 0;
+    
+    console.log('🔍 Detecting current section...');
     
     // Find the section with the most visible area in the viewport
     for (let i = 0; i < orderedSections.length; i++) {
@@ -289,6 +354,14 @@ function App() {
       const visibleBottom = Math.min(sectionBottom, viewportBottom);
       const visibleArea = Math.max(0, visibleBottom - visibleTop);
       
+      console.log(`📍 Section ${section.id}:`, {
+        index: i,
+        sectionTop,
+        sectionBottom,
+        visibleArea,
+        isCurrentlyMostVisible: visibleArea > maxVisibleArea
+      });
+      
       if (visibleArea > maxVisibleArea) {
         maxVisibleArea = visibleArea;
         currentSectionIndex = i;
@@ -297,8 +370,15 @@ function App() {
 
     // If no section was detected or we're at the very start, default to home section
     if (currentSectionIndex === -1 || maxVisibleArea === 0) {
+      console.log('⚠️ No section detected, defaulting to home');
       currentSectionIndex = 0; // Start from home (first in ordered sections)
     }
+
+    console.log('🎯 Current section detected:', {
+      currentSectionIndex,
+      currentSection: orderedSections[currentSectionIndex]?.id,
+      maxVisibleArea
+    });
 
     let nextSectionIndex;
     
@@ -311,6 +391,12 @@ function App() {
     }
     
     const nextSection = orderedSections[nextSectionIndex];
+    
+    console.log('➡️ Next section:', {
+      nextSectionIndex,
+      nextSectionId: nextSection?.id,
+      nextSectionExists: !!nextSection
+    });
     
     smoothScrollToSection(nextSection);
   };
@@ -325,13 +411,13 @@ function App() {
           alt="rocket scroll"
           className={`rocket ${isScrolling ? 'scrolling' : ''}`}
           onClick={scrollBetweenSections}
-          onTouchStart={scrollBetweenSections}
           style={{ 
             opacity: isScrolling ? 0.6 : 1,
             cursor: isScrolling ? 'wait' : 'pointer',
             WebkitTouchCallout: 'none',
             WebkitUserSelect: 'none',
-            userSelect: 'none'
+            userSelect: 'none',
+            touchAction: 'manipulation' // Prevent touch delays and enable click on mobile
           }}
         />
         <div className="scroll-indicator">
