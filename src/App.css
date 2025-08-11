@@ -8,6 +8,21 @@ html, body {
   font-family: sans-serif;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  /* Enhanced scroll behavior for mobile */
+  -webkit-overflow-scrolling: touch;
+  scroll-padding-top: 0;
+}
+
+/* Ensure smooth scrolling on all elements */
+* {
+  scroll-behavior: smooth;
+}
+
+/* iOS-specific smooth scrolling improvements */
+@supports (-webkit-touch-callout: none) {
+  html {
+    scroll-behavior: auto; /* Let our custom JS handle iOS scrolling */
+  }
 }
 
 section {
@@ -68,12 +83,26 @@ section p {
   cursor: pointer;
   width: 60px;
   animation: floatRocket 2s ease-in-out infinite;
+  transition: all 0.3s ease;
 }
 
 .rocket:hover {
   transform: scale(1.1);
   filter: drop-shadow(0 0 8px white);
-  transition: all 0.3s ease;
+}
+
+.rocket.scrolling {
+  animation: rocketScrolling 0.5s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 12px #89c2d9);
+}
+
+@keyframes rocketScrolling {
+  0% {
+    transform: translateY(0px) scale(1);
+  }
+  100% {
+    transform: translateY(-5px) scale(1.05);
+  }
 }
 
 .scroll-indicator {
@@ -179,7 +208,29 @@ section p {
   }
 
   .rocket {
-    width: 40px;
+    width: 50px; /* Slightly smaller on mobile */
+    /* Improve touch interactions */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .rocket-wrapper {
+    bottom: 40px; /* Closer to bottom on mobile for easier reach */
+  }
+
+  /* Reduce animations on mobile for better performance */
+  @media (prefers-reduced-motion: reduce) {
+    .rocket {
+      animation: none;
+    }
+    
+    .scroll-indicator {
+      animation: none;
+    }
+    
+    .rocket.scrolling {
+      animation: none;
+    }
   }
 }
 
@@ -189,5 +240,9 @@ section p {
     min-height: calc(100vh - 2rem);
     min-height: calc(100svh - 2rem);
     padding: 0.75rem;
+  }
+  
+  .rocket {
+    width: 40px;
   }
 }

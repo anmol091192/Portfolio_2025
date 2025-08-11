@@ -13,6 +13,7 @@ import ScrollSpyNav from './components/ScrollSpyNav/ScrollSpyNav';
 function App() {
   const [atTop, setAtTop] = useState(false); // Start as false since we start at home (bottom)
   const [atBottom, setAtBottom] = useState(true); // Start as true since home is at bottom
+  const [isScrolling, setIsScrolling] = useState(false); // Add scrolling state to prevent rapid clicks
 
   useEffect(() => {
     // Wait for all sections to render and then scroll to home
@@ -132,19 +133,85 @@ function App() {
   }, []);
 
   const scrollBetweenSections = () => {
+    // Prevent rapid clicks - wait for current scroll to finish
+    if (isScrolling) {
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Scroll in progress, ignoring click');
+      }
+      return;
+    }
+    
+    setIsScrolling(true);
+    
     const sections = [...document.querySelectorAll("section")];
     const currentScroll = window.scrollY;
     const windowHeight = window.innerHeight;
     const docHeight = document.documentElement.scrollHeight;
+    
+    // Detect if we're on mobile
+    const isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
     if (process.env.NODE_ENV === 'development') {
       console.log('Rocket clicked - Page info:', { 
         scrollHeight: document.documentElement.scrollHeight,
         clientHeight: document.documentElement.clientHeight,
         scrollY: window.scrollY,
-        isScrollable: document.documentElement.scrollHeight > document.documentElement.clientHeight
+        isScrollable: document.documentElement.scrollHeight > document.documentElement.clientHeight,
+        isMobile: isMobile
       });
-    }    // If page is not scrollable (fits in viewport), cycle through sections by index
+    }
+    
+    // Enhanced smooth scrolling function for mobile compatibility
+    const smoothScrollToSection = (targetSection) => {
+      if (!targetSection) {
+        setIsScrolling(false);
+        return;
+      }
+      
+      if (isMobile) {
+        // For mobile: Use a more gentle approach with custom easing
+        const startY = window.scrollY;
+        const targetY = targetSection.offsetTop;
+        const distance = targetY - startY;
+        const duration = Math.min(1500, Math.max(800, Math.abs(distance) / 2)); // Dynamic duration based on distance
+        const startTime = performance.now();
+        
+        // Custom easing function for smoother mobile experience
+        const easeInOutCubic = (t) => {
+          return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+        };
+        
+        const scroll = (currentTime) => {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const easedProgress = easeInOutCubic(progress);
+          const currentY = startY + (distance * easedProgress);
+          
+          window.scrollTo(0, currentY);
+          
+          if (progress < 1) {
+            requestAnimationFrame(scroll);
+          } else {
+            // Reset scrolling state when animation completes
+            setTimeout(() => setIsScrolling(false), 200);
+          }
+        };
+        
+        requestAnimationFrame(scroll);
+      } else {
+        // For desktop: Use native smooth scrolling with block: 'start' for better positioning
+        targetSection.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start',
+          inline: 'nearest'
+        });
+        
+        // Reset scrolling state after a reasonable delay for desktop
+        setTimeout(() => setIsScrolling(false), 1000);
+      }
+    };
+
+    // If page is not scrollable (fits in viewport), cycle through sections by index
     if (docHeight <= windowHeight) {
       if (process.env.NODE_ENV === 'development') {
         console.log('Page not scrollable - using section cycling');
@@ -165,9 +232,7 @@ function App() {
         console.log('Cycling to section:', sectionOrder[currentIndex]);
       }
       
-      if (targetSection) {
-        targetSection.scrollIntoView({ behavior: 'smooth' });
-      }
+      smoothScrollToSection(targetSection);
       return;
     }
     
@@ -219,9 +284,7 @@ function App() {
       console.log('Scrolling to:', nextSection?.id);
     }
     
-    if (nextSection) {
-      nextSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    smoothScrollToSection(nextSection);
   };
 
   return (
@@ -232,11 +295,15 @@ function App() {
         <img
           src="https://img.icons8.com/?size=100&id=64347&format=png&color=000000"
           alt="rocket scroll"
-          className="rocket"
+          className={`rocket ${isScrolling ? 'scrolling' : ''}`}
           onClick={scrollBetweenSections}
+          style={{ 
+            opacity: isScrolling ? 0.6 : 1,
+            cursor: isScrolling ? 'wait' : 'pointer'
+          }}
         />
         <div className="scroll-indicator">
-          🚀 Explore the Universe
+          {isScrolling ? '🚀 Traveling...' : '🚀 Explore the Universe'}
         </div>
       </div>
 
