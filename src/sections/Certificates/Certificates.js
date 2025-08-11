@@ -7,7 +7,10 @@ const Certifications = () => {
   const [showOverlay, setShowOverlay] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [scrollY, setScrollY] = useState(0);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
   const sectionRef = useRef(null);
+  const carouselRef = useRef(null);
   const certificatesData = getSectionData('certificates');
   const stats = getCertificateStats();
   
@@ -70,6 +73,33 @@ const Certifications = () => {
 
   const goToSlide = (slideIndex) => {
     setCurrentSlide(slideIndex);
+  };
+
+  // Touch handling for swipe gestures
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null); // otherwise the swipe is fired even with usual touch events
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && currentSlide < totalSlides - 1) {
+      nextSlide();
+    }
+    if (isRightSwipe && currentSlide > 0) {
+      prevSlide();
+    }
   };
 
   // Handle window resize for responsive carousel
@@ -158,20 +188,20 @@ const Certifications = () => {
             <>
               <button
                 onClick={prevSlide}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 p-3 bg-gradient-to-r from-space-blue-500/20 to-cosmic-purple-500/20 backdrop-blur-sm rounded-full hover:from-space-blue-500/40 hover:to-cosmic-purple-500/40 transition-all duration-300 border border-white/20 hover:border-white/40 group"
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 p-3 bg-gradient-to-r from-space-blue-500/20 to-cosmic-purple-500/20 backdrop-blur-sm rounded-full hover:from-space-blue-500/40 hover:to-cosmic-purple-500/40 active:from-space-blue-500/60 active:to-cosmic-purple-500/60 transition-all duration-300 border border-white/20 hover:border-white/40 group touch-manipulation"
                 aria-label="Previous certificates"
               >
-                <svg className="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 text-white group-hover:scale-110 group-active:scale-95 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
               
               <button
                 onClick={nextSlide}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 p-3 bg-gradient-to-r from-space-blue-500/20 to-cosmic-purple-500/20 backdrop-blur-sm rounded-full hover:from-space-blue-500/40 hover:to-cosmic-purple-500/40 transition-all duration-300 border border-white/20 hover:border-white/40 group"
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 p-3 bg-gradient-to-r from-space-blue-500/20 to-cosmic-purple-500/20 backdrop-blur-sm rounded-full hover:from-space-blue-500/40 hover:to-cosmic-purple-500/40 active:from-space-blue-500/60 active:to-cosmic-purple-500/60 transition-all duration-300 border border-white/20 hover:border-white/40 group touch-manipulation"
                 aria-label="Next certificates"
               >
-                <svg className="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 text-white group-hover:scale-110 group-active:scale-95 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </button>
@@ -179,9 +209,15 @@ const Certifications = () => {
           )}
 
           {/* Carousel Cards */}
-          <div className="overflow-hidden rounded-xl max-h-96">
+          <div 
+            ref={carouselRef}
+            className="overflow-hidden rounded-xl max-h-96 touch-pan-y"
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+          >
             <div 
-              className={`flex transition-transform duration-500 ease-in-out gap-4 lg:gap-6 h-96`}
+              className={`flex transition-transform duration-500 ease-in-out gap-4 lg:gap-6 h-96 select-none`}
               style={{ transform: `translateX(-${currentSlide * 100}%)` }}
             >
               {Array.from({ length: totalSlides }, (_, slideIndex) => (
@@ -231,10 +267,10 @@ const Certifications = () => {
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  className={`w-3 h-3 sm:w-2 sm:h-2 rounded-full transition-all duration-300 touch-manipulation ${
                     index === currentSlide
                       ? 'bg-gradient-to-r from-space-blue-400 to-cosmic-purple-400 scale-125'
-                      : 'bg-white/30 hover:bg-white/50'
+                      : 'bg-white/30 hover:bg-white/50 active:bg-white/70'
                   }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
@@ -249,6 +285,12 @@ const Certifications = () => {
             <span className="text-xs text-gray-400">
               {currentSlide + 1} of {totalSlides}
             </span>
+            {/* Touch hint for mobile users */}
+            <div className="block sm:hidden mt-1">
+              <span className="text-xs text-gray-500 italic">
+                👈 Swipe to navigate 👉
+              </span>
+            </div>
           </div>
         )}
 
