@@ -1,6 +1,7 @@
 // File: src/App.js
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import preloadImages from './utils/preloadImages';
 
 import Contact from './sections/Contact/Contact';
 import Certificates from './sections/Certificates/Certificates';
@@ -16,6 +17,19 @@ function App() {
   const [isScrolling, setIsScrolling] = useState(false); // Add scrolling state to prevent rapid clicks
 
   useEffect(() => {
+    // Preload background images for better performance
+    preloadImages()
+      .then(() => {
+        if (process.env.NODE_ENV === 'development') {
+          console.log('✅ All background images preloaded successfully');
+        }
+      })
+      .catch((error) => {
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('⚠️ Some background images failed to preload:', error);
+        }
+      });
+
     // Wait for all sections to render and then scroll to home
     const scrollToHome = () => {
       // Force a reflow to ensure all sections are rendered

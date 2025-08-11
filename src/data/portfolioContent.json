@@ -11,7 +11,7 @@
     "title": "Anmol Khandekar",
     "subtitle": "Software Engineer · Explorer of the Digital Unknown",
     "tagLine": "Inventing new realities through curiosity, code, and cosmic inspiration.",
-    "backgroundImage": "https://stsci-opo.org/STScI-01GFNN3PWJMY4RQXKZ585BC4QH.png",
+    "backgroundImage": "/assets/images/background/pillars-of-creation.png",
     "imageOverlay": {
       "title": "Pillars of Creation",
       "description": "Captured by the James Webb Space Telescope in infrared, these iconic dust and gas columns within the Eagle Nebula are stellar nurseries hosting newborn stars. The tallest pillar spans about 4 light‑years"
@@ -31,7 +31,7 @@
       "Generative Adversarial Networks (GANs)", "Variational Autoencoders (VAEs)", 
       "Stable Diffusion", "LLM Architecture", "LLM Benchmarking", "Explainable AI"
     ],
-    "backgroundImage": "https://stsci-opo.org/STScI-01GKMKRHSSCD5RKJYSB4DFH8D8.png",
+    "backgroundImage": "/assets/images/background/cosmic-cliffs-carina-nebula.png",
     "imageOverlay": {
       "title": "Cosmic Cliffs – Carina Nebula",
       "description": "The Carina Nebula, captured by James Webb Space Telescope, reveals a stellar nursery where new stars are born. This cosmic landscape shows towering pillars of gas and dust, sculpted by stellar winds and radiation from massive young stars, creating one of the most spectacular star-forming regions in our galaxy."
@@ -40,7 +40,7 @@
   "experience": {
     "title": "Experience",
     "subtitle": "Professional Journey",
-    "backgroundImage": "https://stsci-opo.org/STScI-01H9NWX3EYP3VJKTA68ZCQS8BS.jpg",
+    "backgroundImage": "/assets/images/background/herbig-haro-211.jpg",
     "overlayTitle": "Herbig-Haro 211 – Protostellar Jet",
     "overlayDescription": "A tightly focused jet of gas blasts from a newborn star, traveling at supersonic speed. Captured by JWST in near-infrared, this image reveals the early dynamics of stellar formation.",
     "experiences": [
@@ -91,7 +91,7 @@
   "projects": {
     "title": "Projects",
     "subtitle": "Featured Work",
-    "backgroundImage": "https://stsci-opo.org/STScI-01JY2AZA9GFMFRKWNTG0HYB8KN.jpg",
+    "backgroundImage": "/assets/images/background/cats-paw-nebula.jpg",
     "overlayTitle": "Cat’s Paw Nebula (NGC 6334)",
     "overlayDescription": "Tucked 4,000 light-years away in the constellation Scorpius, the Cat’s Paw Nebula reveals a turbulent nursery of young stars clawing their way into existence. Captured by the James Webb Space Telescope’s near-infrared gaze, this view peels back a glowing “toe bean” of gas and dust — unveiling newborn stars carving luminous paths through the cloud. What you see is a chapter mid-creation: brilliant, short-lived stars sculpt the surrounding chaos, glowing blue as they disrupt and eventually silence further star formation. This richly layered scene offers not just beauty, but clues to how stars — and perhaps worlds — begin.",
     "projects": [
@@ -169,7 +169,7 @@
   "certificates": {
     "title": "Certificates",
     "description": "Continuous learning and professional development through industry-recognized certifications",
-    "backgroundImage": "https://stsci-opo.org/STScI-01HMBZMMFW050HSEVKPN5E6S5W.png",
+    "backgroundImage": "/assets/images/background/spiral-galaxy-ngc-4254.png",
     "statsLabels": {
       "total": "Total Certs",
       "active": "Active",
@@ -268,7 +268,7 @@
   "contact": {
     "title": "Let's Connect",
     "subtitle": "Ready to collaborate or discuss opportunities? I'd love to hear from you!",
-    "backgroundImage": "https://stsci-opo.org/STScI-01H82GANSY85GHFY3Y2FN9R65P.png",
+    "backgroundImage": "/assets/images/background/ring-nebula.png",
     "socialLinks": {
       "linkedin": "https://linkedin.com/in/anmol09k",
       "github": "https://github.com/anmol091192"
