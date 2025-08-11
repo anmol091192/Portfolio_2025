@@ -1,0 +1,162 @@
+/* Contact Section Mobile Optimizations */
+
+/* Desktop optimizations */
+@media (min-width: 1024px) {
+  #contact {
+    min-height: 100vh;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  /* Desktop form improvements */
+  #contact .lg\\:col-span-2 form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #contact .lg\\:col-span-2 textarea {
+    flex: 1;
+    min-height: 200px;
+  }
+
+  /* Better desktop spacing */
+  #contact .lg\\:col-span-1 .space-y-6 > * + * {
+    margin-top: 1.5rem;
+  }
+
+  /* Desktop social links layout */
+  #contact .lg\\:flex-col {
+    flex-direction: column;
+  }
+
+  #contact .xl\\:flex-row {
+    flex-direction: row;
+  }
+}
+
+/* Ensure proper mobile viewport handling */
+@media (max-width: 768px) {
+  /* Contact section specific mobile styles */
+  #contact {
+    min-height: 100vh;
+    min-height: 100svh; /* Use small viewport height on mobile */
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  /* Form improvements for mobile */
+  #contact input,
+  #contact textarea {
+    font-size: 16px; /* Prevent zoom on iOS */
+    appearance: none;
+    -webkit-appearance: none;
+    -webkit-border-radius: 0.5rem;
+    border-radius: 0.5rem;
+  }
+
+  /* Touch target improvements */
+  #contact button,
+  #contact a {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Prevent text selection on buttons */
+  #contact button {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Better spacing for mobile */
+  #contact .grid {
+    gap: 1.5rem;
+  }
+
+  /* Improve focus styles for mobile */
+  #contact input:focus,
+  #contact textarea:focus {
+    outline: none;
+    border-color: rgb(59 130 246);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+}
+
+/* Very small mobile devices */
+@media (max-width: 480px) {
+  #contact {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  /* Smaller form elements for very small screens */
+  #contact input,
+  #contact textarea {
+    padding: 0.875rem;
+  }
+
+  /* Adjust grid spacing */
+  #contact .grid {
+    gap: 1rem;
+  }
+
+  /* Make form full width on very small screens */
+  #contact .lg\\:col-span-2 {
+    grid-column: span 1;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+  #contact {
+    min-height: auto;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  /* Reduce spacing in landscape */
+  #contact .space-y-4 > * + * {
+    margin-top: 1rem;
+  }
+
+  #contact .space-y-6 > * + * {
+    margin-top: 1rem;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  #contact button,
+  #contact a {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Dark mode adjustments for mobile */
+@media (prefers-color-scheme: dark) {
+  #contact input,
+  #contact textarea {
+    color: white;
+  }
+  
+  #contact input::placeholder,
+  #contact textarea::placeholder {
+    color: rgb(156 163 175);
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  #contact * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

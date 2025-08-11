@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import ImageInfoOverlay from '../../components/ImageInfoOverlay/ImageInfoOverlay';
 import { getSectionData } from '../../data/usePortfolioData';
+import './Contact.css';
 // import { emailjsConfig } from '../../config/emailjs';
 
 const Contact = () => {
@@ -144,7 +145,7 @@ const Contact = () => {
     <section 
       ref={sectionRef}
       id="contact" 
-      className="relative h-screen flex flex-col justify-center items-center text-white py-8 sm:py-12 px-4 sm:px-6 lg:px-12 w-full overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-center items-center text-white py-8 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-12 w-full overflow-hidden"
       style={sectionStyle}
     >
       {/* Background Overlay */}
@@ -152,7 +153,7 @@ const Contact = () => {
       
       {/* Info Button */}
       <button 
-        className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 p-2 sm:p-3 bg-gradient-to-r from-space-blue-500/20 to-cosmic-purple-500/20 backdrop-blur-sm rounded-full hover:from-space-blue-500/40 hover:to-cosmic-purple-500/40 transition-all duration-300 border border-white/20 hover:border-white/40 group" 
+        className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 p-3 sm:p-4 bg-gradient-to-r from-space-blue-500/20 to-cosmic-purple-500/20 backdrop-blur-sm rounded-full hover:from-space-blue-500/40 hover:to-cosmic-purple-500/40 transition-all duration-300 border border-white/20 hover:border-white/40 group min-h-[48px] min-w-[48px] flex items-center justify-center" 
         onClick={handleInfoClick}
         style={{
           transform: `translateY(${scrollY * 0.3}px)` // Subtle movement for button
@@ -161,7 +162,7 @@ const Contact = () => {
         <img 
           src="https://img.icons8.com/ios-filled/50/ffffff/telescope.png" 
           alt="info" 
-          className="w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform duration-300" 
+          className="w-6 h-6 sm:w-7 sm:h-7 group-hover:scale-110 transition-transform duration-300" 
         />
       </button>
 
@@ -173,65 +174,65 @@ const Contact = () => {
         }}
       >
         {/* Section Header */}
-        <div className="text-center mx-auto mb-4 sm:mb-6">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2 sm:mb-3 text-transparent bg-clip-text bg-gradient-to-r from-space-blue-200 via-white to-cosmic-purple-200">
+        <div className="text-center mx-auto mb-6 sm:mb-8 md:mb-10">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 text-transparent bg-clip-text bg-gradient-to-r from-space-blue-200 via-white to-cosmic-purple-200">
             {contactData.title}
           </h1>
-          <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-space-blue-400 to-cosmic-purple-400 mx-auto mb-3 sm:mb-4 rounded-full"></div>
-          <p className="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto">
+          <div className="w-12 sm:w-16 md:w-20 h-1 bg-gradient-to-r from-space-blue-400 to-cosmic-purple-400 mx-auto mb-3 sm:mb-4 rounded-full"></div>
+          <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-2xl mx-auto px-2">
             {contactData.subtitle}
           </p>
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 flex-1 items-start">
-          {/* Left Column - Contact Info & Social */}
-          <div className="lg:col-span-1 space-y-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 w-full max-w-7xl mx-auto">
+          {/* Contact Info & Social - Desktop Left, Mobile Top */}
+          <div className="lg:col-span-1 space-y-4 sm:space-y-6 order-2 lg:order-1">
             {/* Direct Contact */}
-            <div className="bg-gradient-to-br from-space-blue-900/30 to-cosmic-purple-900/30 backdrop-blur-sm rounded-xl p-4 sm:p-5 border border-white/20 hover:border-white/40 transition-all duration-300">
-              <div className="flex items-center space-x-3 mb-3">
-                <div className="w-8 h-8 bg-gradient-to-r from-space-blue-500 to-cosmic-purple-500 rounded-lg flex items-center justify-center">
-                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <div className="bg-gradient-to-br from-space-blue-900/30 to-cosmic-purple-900/30 backdrop-blur-sm rounded-xl p-5 sm:p-6 border border-white/20 hover:border-white/40 transition-all duration-300">
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-space-blue-500 to-cosmic-purple-500 rounded-lg flex items-center justify-center">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-white">Email</h3>
+                <h3 className="text-lg sm:text-xl font-semibold text-white">Email</h3>
               </div>
-              <a href="mailto:anmolk0992@gmail.com" className="text-space-blue-300 hover:text-white transition-colors text-sm break-all">
+              <a href="mailto:anmolk0992@gmail.com" className="text-space-blue-300 hover:text-white transition-colors text-sm sm:text-base break-all">
                 anmolk0992@gmail.com
               </a>
             </div>
 
             {/* Social Links */}
-            <div className="bg-gradient-to-br from-space-blue-900/30 to-cosmic-purple-900/30 backdrop-blur-sm rounded-xl p-4 sm:p-5 border border-white/20 hover:border-white/40 transition-all duration-300">
-              <div className="flex items-center space-x-3 mb-3">
-                <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <div className="bg-gradient-to-br from-space-blue-900/30 to-cosmic-purple-900/30 backdrop-blur-sm rounded-xl p-5 sm:p-6 border border-white/20 hover:border-white/40 transition-all duration-300">
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm0 4a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1V8zm8 0a1 1 0 011-1h4a1 1 0 011 1v6a1 1 0 01-1 1h-4a1 1 0 01-1-1V8z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-white">Connect</h3>
+                <h3 className="text-lg sm:text-xl font-semibold text-white">Connect</h3>
               </div>
-              <div className="flex space-x-3">
-                <a href={contactData.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="flex-1 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white py-2 px-3 rounded-lg transition-all duration-300 text-center text-sm">
+              <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-3">
+                <a href={contactData.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="flex-1 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white py-3 px-4 rounded-lg transition-all duration-300 text-center text-sm sm:text-base font-medium min-h-[44px] flex items-center justify-center">
                   LinkedIn
                 </a>
-                <a href={contactData.socialLinks.github} target="_blank" rel="noopener noreferrer" className="flex-1 bg-gradient-to-r from-gray-700 to-gray-600 hover:from-gray-600 hover:to-gray-500 text-white py-2 px-3 rounded-lg transition-all duration-300 text-center text-sm">
+                <a href={contactData.socialLinks.github} target="_blank" rel="noopener noreferrer" className="flex-1 bg-gradient-to-r from-gray-700 to-gray-600 hover:from-gray-600 hover:to-gray-500 text-white py-3 px-4 rounded-lg transition-all duration-300 text-center text-sm sm:text-base font-medium min-h-[44px] flex items-center justify-center">
                   GitHub
                 </a>
               </div>
             </div>
 
             {/* Resume Download */}
-            <div className="bg-gradient-to-br from-space-blue-900/30 to-cosmic-purple-900/30 backdrop-blur-sm rounded-xl p-4 sm:p-5 border border-white/20 hover:border-white/40 transition-all duration-300">
-              <div className="flex items-center space-x-3 mb-3">
-                <div className="w-8 h-8 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center">
-                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <div className="bg-gradient-to-br from-space-blue-900/30 to-cosmic-purple-900/30 backdrop-blur-sm rounded-xl p-5 sm:p-6 border border-white/20 hover:border-white/40 transition-all duration-300">
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-white">Resume</h3>
+                <h3 className="text-lg sm:text-xl font-semibold text-white">Resume</h3>
               </div>
               <button 
                 onClick={() => {
@@ -241,9 +242,9 @@ const Contact = () => {
                   link.download = 'Anmol_Khandekar_Resume.pdf';
                   link.click();
                 }}
-                className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white py-2 px-3 rounded-lg transition-all duration-300 text-center text-sm font-medium flex items-center justify-center space-x-2 group"
+                className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white py-3 px-4 rounded-lg transition-all duration-300 text-center text-sm sm:text-base font-medium min-h-[44px] flex items-center justify-center space-x-2 group"
               >
-                <svg className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
                 <span>Download Resume</span>
@@ -251,12 +252,12 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Middle Column - Contact Form */}
-          <div className="lg:col-span-2">
-            <form onSubmit={handleContactSubmit} className="bg-gradient-to-br from-space-blue-900/30 to-cosmic-purple-900/30 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/20 h-full flex flex-col">
-              <h3 className="text-xl font-semibold text-white mb-4 text-center lg:text-left">{contactData.sections.form.title}</h3>
+          {/* Contact Form - Desktop Right, Mobile First */}
+          <div className="lg:col-span-2 order-1 lg:order-2">
+            <form onSubmit={handleContactSubmit} className="bg-gradient-to-br from-space-blue-900/30 to-cosmic-purple-900/30 backdrop-blur-sm rounded-xl p-5 sm:p-6 md:p-8 border border-white/20 h-full flex flex-col">
+              <h3 className="text-xl sm:text-2xl font-semibold text-white mb-6 text-center lg:text-left">{contactData.sections.form.title}</h3>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6">
                 <div>
                   <input
                     type="text"
@@ -265,7 +266,7 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 bg-black/30 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-space-blue-400 focus:ring-1 focus:ring-space-blue-400 transition-all text-sm"
+                    className="w-full px-4 py-4 bg-black/30 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-space-blue-400 focus:ring-2 focus:ring-space-blue-400/50 transition-all text-base min-h-[48px]"
                   />
                 </div>
                 <div>
@@ -276,12 +277,12 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 bg-black/30 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-space-blue-400 focus:ring-1 focus:ring-space-blue-400 transition-all text-sm"
+                    className="w-full px-4 py-4 bg-black/30 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-space-blue-400 focus:ring-2 focus:ring-space-blue-400/50 transition-all text-base min-h-[48px]"
                   />
                 </div>
               </div>
               
-              <div className="mb-4">
+              <div className="mb-6">
                 <input
                   type="text"
                   name="subject"
@@ -289,11 +290,11 @@ const Contact = () => {
                   value={formData.subject}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 bg-black/30 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-space-blue-400 focus:ring-1 focus:ring-space-blue-400 transition-all text-sm"
+                  className="w-full px-4 py-4 bg-black/30 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-space-blue-400 focus:ring-2 focus:ring-space-blue-400/50 transition-all text-base min-h-[48px]"
                 />
               </div>
               
-              <div className="flex-1 mb-4">
+              <div className="flex-1 mb-6">
                 <textarea
                   name="message"
                   placeholder="Your Message"
@@ -301,15 +302,15 @@ const Contact = () => {
                   onChange={handleInputChange}
                   required
                   rows="6"
-                  className="w-full h-full px-4 py-3 bg-black/30 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-space-blue-400 focus:ring-1 focus:ring-space-blue-400 transition-all text-sm resize-none"
+                  className="w-full h-full px-4 py-4 bg-black/30 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-space-blue-400 focus:ring-2 focus:ring-space-blue-400/50 transition-all text-base resize-none min-h-[120px]"
                 ></textarea>
               </div>
               
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-space-blue-600 to-cosmic-purple-600 hover:from-space-blue-500 hover:to-cosmic-purple-500 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-[1.02] text-sm sm:text-base flex items-center justify-center space-x-2 group"
+                className="w-full bg-gradient-to-r from-space-blue-600 to-cosmic-purple-600 hover:from-space-blue-500 hover:to-cosmic-purple-500 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-[1.02] text-base sm:text-lg flex items-center justify-center space-x-3 group min-h-[56px] active:scale-[0.98]"
               >
-                <svg className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                   <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                 </svg>
