@@ -4,8 +4,6 @@
 @media (min-width: 1024px) {
   #contact {
     min-height: 100vh;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
   }
 
   /* Desktop form improvements */
@@ -41,8 +39,6 @@
   #contact {
     min-height: 100vh;
     min-height: 100svh; /* Use small viewport height on mobile */
-    padding-top: 2rem;
-    padding-bottom: 2rem;
   }
 
   /* Form improvements for mobile */
@@ -88,12 +84,6 @@
 
 /* Very small mobile devices */
 @media (max-width: 480px) {
-  #contact {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-  }
 
   /* Smaller form elements for very small screens */
   #contact input,
@@ -116,8 +106,6 @@
 @media (max-height: 600px) and (orientation: landscape) {
   #contact {
     min-height: auto;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
   }
 
   /* Reduce spacing in landscape */

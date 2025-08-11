@@ -32,7 +32,8 @@ const ScrollSpyNav = () => {
     e.preventDefault();
     
     // Update sessionStorage with the correct section index for rocket navigation
-    const sectionOrder = ['home', 'about', 'experience', 'projects', 'certificates', 'contact'];
+    // IMPORTANT: Must match rocket navigation order
+    const sectionOrder = ['contact', 'certificates', 'projects', 'experience', 'about', 'home'];
     const sectionIndex = sectionOrder.indexOf(sectionId);
     
     if (sectionIndex !== -1) {
