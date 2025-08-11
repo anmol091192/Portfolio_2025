@@ -38,9 +38,6 @@ const ScrollSpyNav = () => {
     
     if (sectionIndex !== -1) {
       sessionStorage.setItem('currentSectionIndex', sectionIndex.toString());
-      if (process.env.NODE_ENV === 'development') {
-        console.log('Nav clicked - updated currentSectionIndex to:', sectionIndex, 'for section:', sectionId);
-      }
     }
     
     // Navigate to the section

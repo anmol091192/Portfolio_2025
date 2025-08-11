@@ -12,19 +12,16 @@ import Home from './sections/Home/Home';
 import ScrollSpyNav from './components/ScrollSpyNav/ScrollSpyNav';
 
 function App() {
-  const [atTop, setAtTop] = useState(false); // Start as false since we start at home (bottom)
-  const [atBottom, setAtBottom] = useState(true); // Start as true since home is at bottom
   const [isScrolling, setIsScrolling] = useState(false); // Add scrolling state to prevent rapid clicks
 
   useEffect(() => {
     // Preload background images for better performance
     preloadImages()
       .then(() => {
-        if (process.env.NODE_ENV === 'development') {
-          console.log('✅ All background images preloaded successfully');
-        }
+        // Images preloaded successfully - silent in production
       })
       .catch((error) => {
+        // Log preload errors only in development
         if (process.env.NODE_ENV === 'development') {
           console.warn('⚠️ Some background images failed to preload:', error);
         }
@@ -40,15 +37,6 @@ function App() {
       const docHeight = document.documentElement.scrollHeight;
       const windowHeight = window.innerHeight;
       
-      // Page dimensions for debugging
-      if (process.env.NODE_ENV === 'development') {
-        console.log('Page dimensions:', { 
-          scrollHeight: document.documentElement.scrollHeight,
-          clientHeight: document.documentElement.clientHeight,
-          scrollY: window.scrollY
-        });
-      }
-      
       // Always scroll to home section, regardless of page scrollability
       if (home) {
         home.scrollIntoView({ behavior: 'instant', block: 'start' });
@@ -57,22 +45,10 @@ function App() {
         sessionStorage.setItem('currentSectionIndex', '5');
         
         setTimeout(() => {
-          const scrollY = window.scrollY;
-          if (process.env.NODE_ENV === 'development') {
-            console.log('After scrollIntoView - scrollY:', scrollY);
-          }
-          
           if (docHeight > windowHeight) {
-            // Page is scrollable
-            setAtTop(scrollY <= 10);
-            setAtBottom(scrollY + windowHeight >= docHeight - 10);
+            // Page is scrollable - no state management needed for production
           } else {
-            // Page fits in viewport - we're starting at home, so we're at bottom
-            if (process.env.NODE_ENV === 'development') {
-              console.log('Page fits in viewport - starting at home (bottom)');
-            }
-            setAtTop(false);
-            setAtBottom(true);
+            // Page fits in viewport - we're starting at home
           }
           
           // Force a scroll event to ensure proper section detection
@@ -89,10 +65,6 @@ function App() {
       const windowHeight = window.innerHeight;
       const docHeight = document.documentElement.scrollHeight;
 
-      // More precise thresholds for better detection
-      const isAtTop = scrollY <= 10;
-      const isAtBottom = scrollY + windowHeight >= docHeight - 10;
-      
       // Update current section in sessionStorage based on visible section
       const sections = [...document.querySelectorAll("section")];
       const sectionOrder = ['home', 'about', 'experience', 'projects', 'certificates', 'contact'];
@@ -126,20 +98,6 @@ function App() {
         // Update sessionStorage with current section
         sessionStorage.setItem('currentSectionIndex', currentSectionIndex.toString());
       }
-      
-      // Debug scroll state changes
-      if (isAtTop !== atTop || isAtBottom !== atBottom) {
-        if (process.env.NODE_ENV === 'development') {
-          console.log('Scroll state change:', { 
-            scrollY: window.scrollY,
-            atTop,
-            atBottom
-          });
-        }
-      }
-      
-      setAtTop(isAtTop);
-      setAtBottom(isAtBottom);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -157,9 +115,6 @@ function App() {
     
     // Prevent rapid clicks - wait for current scroll to finish
     if (isScrolling) {
-      if (process.env.NODE_ENV === 'development') {
-        console.log('Scroll in progress, ignoring click');
-      }
       return;
     }
     
@@ -168,9 +123,6 @@ function App() {
     // Safety timeout to prevent isScrolling from getting stuck
     // eslint-disable-next-line no-unused-vars
     const safetyTimeout = setTimeout(() => {
-      if (process.env.NODE_ENV === 'development') {
-        console.log('Safety timeout triggered - resetting scroll state');
-      }
       setIsScrolling(false);
     }, 2000); // Simple 2 second timeout
     
@@ -184,22 +136,6 @@ function App() {
     const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     const isMobile = isMobileWidth || isMobileDevice || isTouchDevice;
-    
-    if (process.env.NODE_ENV === 'development') {
-      console.log('Rocket clicked - Page info:', { 
-        scrollHeight: document.documentElement.scrollHeight,
-        clientHeight: document.documentElement.clientHeight,
-        scrollY: window.scrollY,
-        windowHeight: windowHeight,
-        docHeight: docHeight,
-        isScrollable: document.documentElement.scrollHeight > document.documentElement.clientHeight,
-        isScrollableCheck: docHeight > windowHeight,
-        isMobile: isMobile,
-        isMobileWidth: isMobileWidth,
-        isMobileDevice: isMobileDevice,
-        isTouchDevice: isTouchDevice
-      });
-    }
     
     // Enhanced smooth scrolling function for mobile compatibility
     const smoothScrollToSection = (targetSection) => {
@@ -257,9 +193,6 @@ function App() {
               }, 100);
             }
           } catch (error) {
-            if (process.env.NODE_ENV === 'development') {
-              console.log('Custom scroll failed, using fallback:', error);
-            }
             fallbackScroll();
           }
         };
@@ -267,9 +200,6 @@ function App() {
         try {
           requestAnimationFrame(scroll);
         } catch (error) {
-          if (process.env.NODE_ENV === 'development') {
-            console.log('RequestAnimationFrame failed, using fallback:', error);
-          }
           fallbackScroll();
         }
       } else {
@@ -285,9 +215,6 @@ function App() {
           clearTimeout(safetyTimeout);
           setTimeout(() => setIsScrolling(false), 1000);
         } catch (error) {
-          if (process.env.NODE_ENV === 'development') {
-            console.log('Desktop scroll failed, using fallback:', error);
-          }
           fallbackScroll();
         }
       }
@@ -299,10 +226,6 @@ function App() {
     const isEffectivelyNonScrollable = heightDifference <= 50; // Allow for small browser UI differences
     
     if (docHeight <= windowHeight || isEffectivelyNonScrollable) {
-      if (process.env.NODE_ENV === 'development') {
-        console.log('Page not scrollable - using section cycling. Height difference:', heightDifference);
-      }
-      
       // Use a simple counter to cycle through sections
       // IMPORTANT: Use same order as navbar for consistency
       const sectionOrder = ['home', 'about', 'experience', 'projects', 'certificates', 'contact'];
@@ -320,17 +243,6 @@ function App() {
       sessionStorage.setItem('currentSectionIndex', currentIndex.toString());
       
       const targetSection = document.getElementById(sectionOrder[currentIndex]);
-      if (process.env.NODE_ENV === 'development') {
-        console.log('Cycling to section:', sectionOrder[currentIndex], 'Target section:', targetSection);
-        if (targetSection) {
-          console.log('Section dimensions:', {
-            offsetTop: targetSection.offsetTop,
-            offsetHeight: targetSection.offsetHeight,
-            scrollHeight: document.documentElement.scrollHeight,
-            windowHeight: window.innerHeight
-          });
-        }
-      }
       
       if (targetSection) {
         // Simple mobile scroll - just use scrollIntoView
@@ -346,15 +258,9 @@ function App() {
           setTimeout(() => setIsScrolling(false), 300);
           
         } catch (error) {
-          if (process.env.NODE_ENV === 'development') {
-            console.log('Section cycling scroll failed:', error);
-          }
           setIsScrolling(false);
         }
       } else {
-        if (process.env.NODE_ENV === 'development') {
-          console.log('Target section not found:', sectionOrder[currentIndex]);
-        }
         clearTimeout(safetyTimeout);
         setIsScrolling(false);
       }
@@ -392,15 +298,6 @@ function App() {
     // If no section was detected or we're at the very start, default to home section
     if (currentSectionIndex === -1 || maxVisibleArea === 0) {
       currentSectionIndex = 0; // Start from home (first in ordered sections)
-      if (process.env.NODE_ENV === 'development') {
-        console.log('No section detected, defaulting to home section');
-      }
-    }
-
-    if (process.env.NODE_ENV === 'development') {
-      console.log('Current section:', orderedSections[currentSectionIndex]?.id);
-      console.log('Position states - atTop:', atTop, 'atBottom:', atBottom);
-      console.log('Max visible area:', maxVisibleArea);
     }
 
     let nextSectionIndex;
@@ -414,9 +311,6 @@ function App() {
     }
     
     const nextSection = orderedSections[nextSectionIndex];
-    if (process.env.NODE_ENV === 'development') {
-      console.log('Scrolling to:', nextSection?.id);
-    }
     
     smoothScrollToSection(nextSection);
   };
