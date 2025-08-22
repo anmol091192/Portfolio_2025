@@ -19,10 +19,10 @@
   },
   "about": {
     "title": "About Me",
-    "subtitle": "Frontend-oriented Full-Stack Software Engineer with 6+ years of experience",
-    "description": "Frontend-oriented Full-Stack Software Engineer with 6+ years of experience delivering scalable, user-centric web applications across startup and enterprise environments. Skilled in building dynamic, accessible UIs with React, TypeScript, and modern component libraries. Experienced in designing RESTful APIs, orchestrating data flows with event-driven architectures (SNS/SQS), and implementing scalable storage solutions using AWS services like DynamoDB, S3, and Lambda. Recently completed the Generative AI Specialization at Purdue University, expanding my expertise in building practical AI-powered applications and agentic workflows.",
+    "subtitle": "Frontend-oriented Full-Stack Software Engineer with 7+ years of experience",
+    "description": "Frontend-oriented Full-Stack Software Engineer with 7+ years of experience delivering scalable, user-centric web applications across startup and enterprise environments. Skilled in building dynamic, accessible UIs with React, TypeScript, and modern component libraries. Experienced in designing RESTful APIs, orchestrating data flows with event-driven architectures (SNS/SQS), and implementing scalable storage solutions using AWS services like DynamoDB, S3, and Lambda. Recently completed the Generative AI Specialization at Purdue University, expanding my expertise in building practical AI-powered applications and agentic workflows.",
     "skills": [
-      "React", "TypeScript", "JavaScript", "Python", "Node.js", "Express", 
+      "React", "TypeScript", "JavaScript", "Python", "Java", "Node.js", "Express", 
       "AWS", "DynamoDB", "S3", "Lambda", "SNS/SQS", "API Gateway", 
       "React Native", "Redux", "Material UI", "Next.js", "Socket.io",
       "MongoDB", "Elasticsearch", "Docker", "Git",
